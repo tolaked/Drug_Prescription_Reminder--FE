@@ -38,3 +38,19 @@ h3{
 .navigation-bar .navlink{
     margin-right: 40px;
 }
+.left-side{
+    background:#DDF8FC;
+    height: 530px;
+    background-repeat: no-repeat;
+    width:55%;
+    display:flex;
+    flex-direction: column;
+}
+
+.app-image{
+    width:70%;
+    height:70%
+}
+.homepage{
+    display: flex;
+}
