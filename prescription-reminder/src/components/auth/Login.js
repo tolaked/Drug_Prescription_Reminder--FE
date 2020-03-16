@@ -104,7 +104,7 @@ const Login =()=> {
               type="text"
               onChange={handleChange}
               name="username"
-              value={formState.values.username || ''}
+              value={formState.values.email || ''}
             />
             {
               hasError('username') ? <p color="hsla(359,98%,68%,1)">{formState.errors.username[0]}</p> : null
