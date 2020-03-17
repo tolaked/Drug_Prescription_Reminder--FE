@@ -6,13 +6,14 @@ const Input = styled.input`
   outline: none;
   padding: 0 .5rem;
   height: 3rem;
-  font-size: 1.4rem;
+  font-size: 1rem;
   border-radius: 0.5rem;
 
 
   ${props => props.small
     && css`
-      width: 6rem;
+      width: 17.5rem;
+      height:2rem;
     `}
 
   ${props => props.medium
