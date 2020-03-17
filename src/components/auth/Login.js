@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Button as AntButton } from 'antd';
 import validate from 'validate.js';
 
+import Homepage from '../hompage/Homepage';
 import {doSignIn} from '../../state/actions/signin'
 import Input from '../../reusables/Input';
 import Label from '../../reusables/Label';
@@ -29,7 +30,7 @@ const schema = {
 
  
 
-const Login =({doSignIn,error})=> {
+const Login =({doSignIn,error,history})=> {
     const [formState, setFormState] = useState({
         isValid: false,
         values: {},
@@ -79,10 +80,11 @@ const Login =({doSignIn,error})=> {
           loading: true,
         });
         doSignIn(user);
+        history.push('/add');
       };
     return (
         <div >
-
+          <Homepage alt/>
                    <BorderDiv>
                    <StyledForm>
                        <InputDiv>
@@ -162,7 +164,7 @@ export default connect(mapStateToProps,{doSignIn})(Login)
 
 const BorderDiv= styled.div`
   `
-  const StyledForm = styled.form`
+  export const StyledForm = styled.form`
   width: 400px;
   height: 350px;
   background: #FFFFFF;

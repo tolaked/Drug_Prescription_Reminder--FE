@@ -18,7 +18,7 @@ export const signUpError = payload =>({
 })
 
 
-export const doSignUp = user => dispatch => {
+export const doSignUp = (user) => dispatch => {
   dispatch(signUpRequest(true));
   axios
     .post('http://localhost:5000/api/v1/users/register', user)

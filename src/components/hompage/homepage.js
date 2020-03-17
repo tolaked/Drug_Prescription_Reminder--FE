@@ -3,13 +3,15 @@ import { Route } from "react-router-dom";
 import Header from '../../reusables/Header'
 import '../../assets/styles/styles.css'
 import Background from '../../assets/images/background-image.jpeg'
-import Login from '../auth/Login'
-import Register from '../auth/Register'
+import Login from '../auth/Login';
+import Register from '../auth/Register';
+import AddPrescription from '../prescriptions/Addprescriptions';
 
-function homepage() {
+const Homepage = ({alt}) => {
     return (
         <div>
             <Header/>
+            {alt &&
             <div className='left-side'>
                <section className='welcome-note'>
                    <div>
@@ -19,11 +21,14 @@ function homepage() {
                    <img className='app-image' src={Background} alt='app-image'/>
                </section>
                </div>
-               <Route exact path='/' component={Login}/>
-               <Route exact path='/register' component={Register}/>
+}
+
+               {/* <Route exact path='/' alt component={Login}/>
+               <Route exact path='/register' alt component={Register}/> */}
+               {/* <Route exact path='/add' component={AddPrescription}/> */}
                
         </div>
     )
 }
 
-export default homepage
+export default Homepage
