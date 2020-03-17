@@ -24,7 +24,6 @@ export const doSignUp = user => dispatch => {
     .post('http://localhost:5000/api/v1/users/register', user)
     .then(({ data }) => {
       Cookie.set('token', data.user.token);
-    //   Router.push('/userdashboard');
       dispatch(signUpSuccess(data.user));
     })
     .catch(error => {
