@@ -108,7 +108,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps,{addPrescription})(Modal)
 
-const StyledForm = Styled.form`
+export const StyledForm = Styled.form`
   display:flex;
   flex-direction:column;
   justify-content:center;
