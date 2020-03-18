@@ -1,7 +1,6 @@
-import React,{useState} from 'react'
-import Styled from 'styled-components';
-import { connect } from 'react-redux';
-import {addPrescription} from '../../state/actions/prescription'
+import React,{useState,useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import {addFormula} from '../../state/actions/usageFormula'
 import {InputDiv} from '../auth/Login'
 import Input from '../../reusables/Input';
 import Label from '../../reusables/Label';
@@ -11,20 +10,38 @@ import '../prescriptionCard/styles.css'
 function UsageFormulaCard({handleHide, show, children}) {
     const initialState = {
         frequency : '',
-        dose: null,
-        number_of_times:null,
+        dose: '',
+        number_of_times:'',
         duration:'',
         before_after_meal:''
     }
     const [form,setForm] = useState(initialState)
+
     const showHideClassName = show ? "modal display-usage" : "modal hide-display";
+
+    const prescription_id = useSelector(state => state.prescription.prescription._id) || ''
+
+  const dispatch = useDispatch();
+  
+    const handleChange =(e)=>{
+        const { name, value } = e.target;
+        e.preventDefault()
+        setForm(prevState=>({
+            ...prevState,[name]:value
+        }))
+    }
+    const handleSubmit =(e,id)=>{
+      e.preventDefault()
+      dispatch(addFormula(form,id))
+      setForm(initialState)
+    }
 
     return (
         <div className={showHideClassName}>
         <section className="formula-modal">
             {children}
             <div className='close' onClick={handleHide}>x</div>
-            <StyledForm >
+            <StyledForm onSubmit={(e)=>handleSubmit(e,prescription_id)}>
             <h4>Add usage formula</h4>
             <InputDiv>
             <Label medium htmlFor='frequency'>Frequency</Label>
@@ -34,7 +51,7 @@ function UsageFormulaCard({handleHide, show, children}) {
             name='frequency'
             id='frequency'
             value={form.frequency}
-            // onChange={handleChange}
+            onChange={handleChange}
             />
             </InputDiv>
             <InputDiv>
@@ -45,7 +62,7 @@ function UsageFormulaCard({handleHide, show, children}) {
             type='number'
             name='dose'
             value={form.dose}
-            // onChange={handleChange}
+            onChange={handleChange}
             />
             </InputDiv>
             <InputDiv>
@@ -55,7 +72,7 @@ function UsageFormulaCard({handleHide, show, children}) {
           id="number_of_times"
            name="number_of_times"
            value={form.number_of_times}
-        //    onChange={handleChange}
+           onChange={handleChange}
            />
         </InputDiv>
         <InputDiv>
@@ -66,7 +83,7 @@ function UsageFormulaCard({handleHide, show, children}) {
             id="duration" 
             name="duration"
             value={form.duration}
-            // onChange={handleChange}
+            onChange={handleChange}
             />
             </InputDiv>
             <InputDiv>
@@ -76,8 +93,8 @@ function UsageFormulaCard({handleHide, show, children}) {
             type="text"
             id="meal" 
             name="before_after_meal"
-            value={form.duration}
-            // onChange={handleChange}
+            value={form.before_after_meal}
+            onChange={handleChange}
             />
             </InputDiv>
             <button
@@ -95,7 +112,6 @@ function UsageFormulaCard({handleHide, show, children}) {
 
             }}
           >
-              
             Add prescription
           </button>
           

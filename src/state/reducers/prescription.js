@@ -9,25 +9,15 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case types.ADD_PRESCRIPTION_REQUEST:
+    case types.GET_SINGLE_PRESCRIPTION_REQUEST:
       return {
         ...state,
-        requesting: action.payload,
-      };
-    case types.ADD_PRESCRIPTION_SUCCESS:
-      return {
-        ...state,
-        requesting: false,
         prescription: action.payload,
+        requesting: false,
+        prescriptions: state.prescriptions,
         error: null,
       };
-    case types.ADD_PRESCRIPTION_ERROR:
-      return {
-        ...state,
-        requesting: false,
-        prescription: {},
-        error: action.payload,
-      };
+    
     case types.GET_PRESCRIPTIONS_REQUEST:
       return{
         ...state,
