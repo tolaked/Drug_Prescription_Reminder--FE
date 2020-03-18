@@ -6,7 +6,7 @@ const Label = styled.label`
   font-weight: ${props => props.weight || 400};
 
   ${props => props.medium && css`
-    font-size: 1.2rem;
+    font-size: 1rem;
   `}
 `;
 

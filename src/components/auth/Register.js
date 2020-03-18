@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Button as AntButton } from 'antd';
 import validate from 'validate.js';
 
+import Homepage from '../hompage/Homepage';
 import {doSignUp} from '../../state/actions/signup'
 import Input from '../../reusables/Input';
 import Label from '../../reusables/Label';
@@ -101,6 +102,7 @@ const Register =({doSignUp})=> {
       };
     return (
         <div >
+            <Homepage alt/>
                    <BorderDiv>
                    <StyledForm>
                        <InputDiv>
