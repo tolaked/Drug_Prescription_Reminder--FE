@@ -45,11 +45,17 @@
   .display-block {
     display: block;
   }
+  .display-usage{
+    display: block;
+  }
   
   .display-none {
     display: none;
   }
 
+  .hide-display{
+    display: none;
+  }
   .close{
       float:right;
       color:red;

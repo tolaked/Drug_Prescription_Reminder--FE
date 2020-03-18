@@ -1,42 +1,55 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import {getPrescriptions} from '../../state/actions/prescription'
+import UsageFormulaCard from './UsageFormulaCard'
 import './styles.css'
 
 const PrescriptionCard =()=> {
+  const [shows,setShow] = useState(false)
+
+  const prescriptions = useSelector(state => state.prescription.prescriptions.prescription) || []
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+    dispatch(getPrescriptions());
+  },[dispatch])
+
+ 
+
+  const handleShow = (e)=>{
+    e.preventDefault()
+    setShow(true)
+  }
+
+  const handleHide =(e)=>{
+    e.preventDefault()
+    setShow(false)
+  }
+  
+  
     return (
         <div>
+          <UsageFormulaCard handleHide={handleHide} show={shows}/>
               <div className="row">
-      <div className="column">
-        <div className="card">
-          <h3>Panadol</h3>
-          <p>Some text</p>
-          <button>Completed</button>
-        </div>
-      </div>
-      <div className="column">
-        <div className="card">
-          <h3>Card 2</h3>
-          <p>Some text</p>
-          <p>Some text</p>
-        </div>
-      </div>
-      <div className="column">
-        <div className="card">
-          <h3>Card 3</h3>
-          <p>Some text</p>
-          <p>Some text</p>
-        </div>
-      </div>
-      <div className="column">
-        <div className="card">
-          <h3>Card 4</h3>
-          <p>Some text</p>
-          <p>Some text</p>
-        </div>
-      </div>
+       {prescriptions.map((pres) => (
+              <div key={pres._id} className='column' onClick={handleShow}>
+                <div className='card'>
+                <p>{pres.drug}</p>
+                <p>{pres.end_Date}</p>
+                <p>{pres.start_Date}</p>
+                <button>Add usage formula</button>
+                <button>Mark as complete</button>
+                
+                </div>
+              </div>
+
+          ))}
+
     </div>
             
         </div>
     )
 }
 
-export default PrescriptionCard
+
+export default PrescriptionCard;

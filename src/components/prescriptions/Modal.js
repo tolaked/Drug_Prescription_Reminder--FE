@@ -1,13 +1,14 @@
 import React,{useState} from 'react'
 import Styled from 'styled-components';
-import { render } from "react-dom";
+import { connect } from 'react-redux';
 // import { FontAwesomeIcon } from "@fontawesome/react-fontawesome";
+import {addPrescription} from '../../state/actions/prescription'
 import Input from '../../reusables/Input';
 import Label from '../../reusables/Label';
 import {InputDiv} from '../auth/Login'
 import '../prescriptionCard/styles.css'
 
-function Modal({handleHide, show, children}) {
+function Modal({handleHide, show, children,addPrescription,prescriptions}) {
     const initialState = {
         drug : '',
         unit: '',
@@ -24,15 +25,19 @@ function Modal({handleHide, show, children}) {
             ...prevState,[name]:value
         }))
     }
+    const handleSubmit =(e)=>{
+      e.preventDefault()
+      addPrescription(form)
+    }
     return (
         <div className={showHideClassName}>
         <section className="modal-main">
             {children}
             <div className='close' onClick={handleHide}>x</div>
-        <StyledForm>
+        <StyledForm onSubmit={handleSubmit}>
             <h4>Add a new prescription</h4>
             <InputDiv>
-            <Label medium for='drug'>Drug</Label>
+            <Label medium htmlFor='drug'>Drug</Label>
             <Input
             small
             type='text'
@@ -43,7 +48,7 @@ function Modal({handleHide, show, children}) {
             />
             </InputDiv>
             <InputDiv>
-            <Label medium for='unit'>Unit</Label>
+            <Label medium htmlFor='unit'>Unit</Label>
             <Input
             small
             id='unit'
@@ -54,21 +59,21 @@ function Modal({handleHide, show, children}) {
             />
             </InputDiv>
             <InputDiv>
-             <Label medium for="start">Start Date:</Label>
+             <Label medium htmlFor="start">Start Date:</Label>
         <Input small
          type="date"
           id="start"
-           name="start"
+           name="start_Date"
            value={form.start_Date}
            onChange={handleChange}/>
         </InputDiv>
         <InputDiv>
-            <Label medium for='end'>End Date</Label>
+            <Label medium htmlFor='end'>End Date</Label>
             <Input 
             small 
             type="date"
             id="end" 
-            name="end"
+            name="end_Date"
             value={form.end_Date}
             onChange={handleChange}/>
             </InputDiv>
@@ -97,7 +102,11 @@ function Modal({handleHide, show, children}) {
     )
 }
 
-export default Modal
+const mapStateToProps = state => ({
+  prescriptions: state.prescription.prescriptions.prescription
+});
+
+export default connect(mapStateToProps,{addPrescription})(Modal)
 
 const StyledForm = Styled.form`
   display:flex;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import Header from '../../reusables/Header.js'
 import TopContent from './TopContent';
 import AllCards from '../prescriptionCard/AllCards';
@@ -15,4 +15,6 @@ const Addprescriptions =()=> {
     )
 }
 
-export default Addprescriptions
+
+  
+  export default Addprescriptions

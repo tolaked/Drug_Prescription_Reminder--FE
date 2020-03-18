@@ -17,14 +17,14 @@ const TopContent = () => {
   return(
   <div className="top-content">
     <div className="compose__message_wrapper">
-      <Modal handleShow={handleShow} handleHide={handleHide} show={show}/>
+      <Modal handleHide={handleHide} show={show}/>
     <button className="compose__message_btn" onClick={handleShow} >
             CREATE
     </button>
   </div>
-    {/* <input className="first" placeholder="search" name = "searchName" onChange={inputChange}/> */}
   </div>
   );
 }
 
 export default TopContent;
+
