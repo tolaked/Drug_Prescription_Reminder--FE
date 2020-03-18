@@ -64,3 +64,14 @@
       font-weight: bolder;
       cursor: pointer;
   }
+
+  .formula-modal {
+    position:fixed;
+    background: white;
+    width: 35%;
+    height:520px;
+    border-radius:10px;
+    top:45%;
+    left:50%;
+    transform: translate(-50%,-50%);
+  }

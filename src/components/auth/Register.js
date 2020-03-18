@@ -97,7 +97,6 @@ const Register =({doSignUp})=> {
           iconLoading: antButtonState.iconLoading,
           loading: true,
         });
-        console.log('ghg')
         doSignUp(user)
       };
     return (

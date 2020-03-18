@@ -27,7 +27,6 @@ const signInRequest = payload => ({
         
         dispatch(signInSuccess(data.user));
         history.push('/add');
-        console.log(data)
       })
       .catch(error => {
         dispatch(signInError(error));

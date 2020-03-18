@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import {getPrescriptions} from '../../state/actions/prescription'
+import {getPrescriptions, fetchSinglePrescription} from '../../state/actions/prescription'
 import UsageFormulaCard from './UsageFormulaCard'
 import './styles.css'
 
@@ -14,10 +14,9 @@ const PrescriptionCard =()=> {
     dispatch(getPrescriptions());
   },[dispatch])
 
- 
-
-  const handleShow = (e)=>{
+  const handleShow = (e,id)=>{
     e.preventDefault()
+    dispatch(fetchSinglePrescription(id))
     setShow(true)
   }
 
@@ -26,13 +25,12 @@ const PrescriptionCard =()=> {
     setShow(false)
   }
   
-  
     return (
         <div>
           <UsageFormulaCard handleHide={handleHide} show={shows}/>
               <div className="row">
        {prescriptions.map((pres) => (
-              <div key={pres._id} className='column' onClick={handleShow}>
+              <div key={pres._id} className='column' onClick={(e)=>handleShow(e,pres._id)}>
                 <div className='card'>
                 <p>{pres.drug}</p>
                 <p>{pres.end_Date}</p>
