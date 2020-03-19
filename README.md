@@ -21,7 +21,6 @@ A web app that allows users keep track of their drug prescription
 - Users can **user can delete prescription**
 - Users can **user can view usage formula**
 - Users can **user can view all prescriptions**
-- Website should be fully responsive
 
 ## Technologies
 
