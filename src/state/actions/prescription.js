@@ -29,7 +29,7 @@ export const deletePrescriptionSuccess =(payload)=>({
 
 export const addPrescription = (data) => dispatch => {
   const token = Cookie.get('token');
-  axios({ method: 'POST', url: 'https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/prescription/add',data, headers:{'Access-Control-Allow-Origin': '*',
+  axios({ method: 'POST', url: 'http://cors-anywhere.herokuapp.com/https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/prescription/add',data, headers:{'Access-Control-Allow-Origin': '*',
   'Content-Type': 'application/json',
     'Authorization': token,}})
    
@@ -44,7 +44,7 @@ export const getPrescriptions = () => dispatch => {
   dispatch(getPrescriptionRequest(true));
   const token = Cookie.get('token');
   axios(
-    { method: 'GET', url: 'https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/prescription', headers:{'Access-Control-Allow-Origin': '*',
+    { method: 'GET', url: 'http://cors-anywhere.herokuapp.com/https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/prescription', headers:{'Access-Control-Allow-Origin': '*',
   'Content-Type': 'application/json',
     'Authorization': token,}})
    
@@ -63,7 +63,7 @@ export const fetchSinglePrescription = (id) => dispatch => {
   dispatch(getSinglePresriptionSuccess(true));
   const token = Cookie.get('token');
   axios(
-    { method: 'GET', url: `https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/prescription/find/${id}`, headers:{'Access-Control-Allow-Origin': '*',
+    { method: 'GET', url: `http://cors-anywhere.herokuapp.com/https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/prescription/find/${id}`, headers:{'Access-Control-Allow-Origin': '*',
   'Content-Type': 'application/json',
     'Authorization': token}})
    
