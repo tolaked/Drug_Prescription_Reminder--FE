@@ -1,10 +1,10 @@
-import * as types from '../constants/prescriptions';
+import * as types from "../actionTypes/prescriptions";
 
 const initialState = {
   requesting: false,
   prescription: {},
-  prescriptions:[],
-  error: null,
+  prescriptions: [],
+  error: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -15,39 +15,41 @@ export default function reducer(state = initialState, action) {
         prescription: action.payload,
         requesting: false,
         prescriptions: state.prescriptions,
-        error: null,
+        error: null
       };
-    
+
     case types.GET_PRESCRIPTIONS_REQUEST:
-      return{
+      return {
         ...state,
-        requesting:action.payload,
-        prescriptions:[],
-        prescription:{},
-        error:null,
-      }
-      case types.GET_PRESCRIPTIONS_SUCCESS:
-        return{
-          ...state,
-          requesting:false,
-          prescriptions:action.payload,
-          prescription:{},
-          error:null,
-        }
-        case types.GET_PRESCRIPTIONS_ERROR:
-        return{
-          ...state,
-          requesting:false,
-          prescriptions:[],
-          prescription:{},
-          error:action.payload,
-        }
-        case types.DELETE_PRESCRIPTION_SUCCESS:
-        return{
-          ...state,
-          requesting:false,
-          prescriptions: state.prescriptions.filter(pres=>pres._id !== action.payload._id),
-        }
+        requesting: action.payload,
+        prescriptions: [],
+        prescription: {},
+        error: null
+      };
+    case types.GET_PRESCRIPTIONS_SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        prescriptions: action.payload,
+        prescription: {},
+        error: null
+      };
+    case types.GET_PRESCRIPTIONS_ERROR:
+      return {
+        ...state,
+        requesting: false,
+        prescriptions: [],
+        prescription: {},
+        error: action.payload
+      };
+    case types.DELETE_PRESCRIPTION_SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        prescriptions: state.prescriptions.filter(
+          pres => pres._id !== action.payload._id
+        )
+      };
     default:
       return state;
   }

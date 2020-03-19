@@ -1,10 +1,10 @@
-import * as types from '../constants/users';
+import * as types from "../actionTypes/users";
 
 const initialState = {
   requesting: false,
   user: {},
   logged: false,
-  error: null,
+  error: null
 };
 
 export default function reducer(state = initialState, action) {
@@ -13,7 +13,7 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         requesting: action.payload,
-        logged: false,
+        logged: false
       };
     case types.SIGNIN_SUCCESS:
       return {
@@ -21,7 +21,7 @@ export default function reducer(state = initialState, action) {
         requesting: false,
         user: action.payload,
         logged: true,
-        error: null,
+        error: null
       };
     case types.SIGNIN_ERROR:
       return {
@@ -29,13 +29,13 @@ export default function reducer(state = initialState, action) {
         requesting: false,
         user: {},
         logged: false,
-        error: action.payload,
+        error: action.payload
       };
     case types.SIGNUP_REQUEST:
       return {
         ...state,
         requesting: action.payload,
-        logged: false,
+        logged: false
       };
     case types.SIGNUP_SUCCESS:
       return {
@@ -43,7 +43,7 @@ export default function reducer(state = initialState, action) {
         requesting: false,
         user: action.payload,
         logged: true,
-        error: null,
+        error: null
       };
     case types.SIGNUP_ERROR:
       return {
@@ -51,13 +51,13 @@ export default function reducer(state = initialState, action) {
         requesting: false,
         user: {},
         logged: false,
-        error: action.payload,
+        error: action.payload
       };
     case types.LOGOUT_REQUEST:
       return {
         ...state,
         requesting: action.payload,
-        logged: true,
+        logged: true
       };
     case types.LOGOUT_SUCCESS:
       return {
@@ -65,14 +65,14 @@ export default function reducer(state = initialState, action) {
         requesting: false,
         user: {},
         logged: action.payload,
-        error: null,
+        error: null
       };
     case types.LOGOUT_ERROR:
       return {
         ...state,
         requesting: false,
         logged: true,
-        error: action.payload,
+        error: action.payload
       };
     default:
       return state;

@@ -1,181 +1,179 @@
-import React,{useState,useEffect} from 'react'
-import {NavLink} from 'react-router-dom'
-import styled from 'styled-components';
-import { connect } from 'react-redux';
-import { Button as AntButton } from 'antd';
-import validate from 'validate.js';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { connect } from "react-redux";
+import { Button as AntButton } from "antd";
+import validate from "validate.js";
 
-import Homepage from '../hompage/Homepage';
-import {doSignIn} from '../../state/actions/signin'
-import Input from '../../reusables/Input';
-import Label from '../../reusables/Label';
-import '../../assets/styles/styles.css'
+import Homepage from "../hompage/Homepage";
+import { doSignIn } from "../../state/actions/signin";
+import Input from "../../reusables/Input";
+import Label from "../../reusables/Label";
+import "../../assets/styles/styles.css";
 
 const schema = {
-    email: {
-      presence: { allowEmpty: false, message: 'is required' },
-      length: {
-        minimum: 4,
-        maximum: 64,
+  email: {
+    presence: { allowEmpty: false, message: "is required" },
+    length: {
+      minimum: 4,
+      maximum: 64
+    }
+  },
+  password: {
+    presence: { allowEmpty: false, message: "is required" },
+    length: {
+      minimum: 6,
+      maximum: 128
+    }
+  }
+};
+
+const Login = props => {
+  const { doSignIn, error } = props;
+
+  const [formState, setFormState] = useState({
+    isValid: false,
+    values: {},
+    touched: {},
+    errors: {}
+  });
+  const [antButtonState, setAntButtonState] = useState({
+    loading: false,
+    iconLoading: false
+  });
+
+  useEffect(() => {
+    const errors = validate(formState.values, schema);
+
+    setFormState(formState => ({
+      ...formState,
+      isValid: !errors,
+      errors: errors || {}
+    }));
+  }, [formState.values]);
+
+  const handleChange = event => {
+    event.persist();
+
+    setFormState(formState => ({
+      ...formState,
+      values: {
+        ...formState.values,
+        [event.target.name]:
+          event.target.type === "checkbox"
+            ? event.target.checked
+            : event.target.value
       },
-    },
-    password: {
-      presence: { allowEmpty: false, message: 'is required' },
-      length: {
-        minimum: 6,
-        maximum: 128,
-      },
-    },
+      touched: {
+        ...formState.touched,
+        [event.target.name]: true
+      }
+    }));
   };
 
- 
+  const hasError = field =>
+    !!(formState.touched[field] && formState.errors[field]);
 
-const Login =({doSignIn,error,history})=> {
-    const [formState, setFormState] = useState({
-        isValid: false,
-        values: {},
-        touched: {},
-        errors: {},
-      });
-      const [antButtonState, setAntButtonState] = useState({
-        loading: false,
-        iconLoading: false,
-      });
-    
-      useEffect(() => {
-        const errors = validate(formState.values, schema);
-    
-        setFormState(formState => ({
-          ...formState,
-          isValid: !errors,
-          errors: errors || {},
-        }));
-      }, [formState.values]);
-    
-      const handleChange = event => {
-        event.persist();
-    
-        setFormState(formState => ({
-          ...formState,
-          values: {
-            ...formState.values,
-            [event.target.name]:
-              event.target.type === 'checkbox'
-                ? event.target.checked
-                : event.target.value,
-          },
-          touched: {
-            ...formState.touched,
-            [event.target.name]: true,
-          },
-        }));
-      };
-    
-      const hasError = field => !!(formState.touched[field] && formState.errors[field]);
-    
-      const handleSubmit = async (event, user) => {
-        event.preventDefault();
-        setAntButtonState({
-          iconLoading: antButtonState.iconLoading,
-          loading: true,
-        });
-        doSignIn(user);
-        history.push('/add');
-      };
-    return (
-        <div >
-          <Homepage alt/>
-                   <BorderDiv>
-                   <StyledForm>
-                     <h2>Login to your account</h2>
-                       <InputDiv>
-                       <Label
-              medium
-            >
-              Email
-            </Label>
-                   <Input
-                   required
+  const handleSubmit = event => {
+    event.preventDefault();
+
+    setAntButtonState({
+      iconLoading: antButtonState.iconLoading,
+      loading: true
+    });
+
+    doSignIn(formState.values).then(res => {
+      if (res.status !== 400) {
+        props.history.push("/add");
+      }
+    });
+  };
+  return (
+    <div>
+      <Homepage alt />
+      <BorderDiv>
+        <StyledForm>
+          <h2>Login to your account</h2>
+          <InputDiv>
+            <Label medium>Email</Label>
+            <Input
+              required
               small
               type="text"
               onChange={handleChange}
               name="email"
-              value={formState.values.email || ''}
+              value={formState.values.email || ""}
             />
-            {
-              hasError('email') ? <p color="hsla(359,98%,68%,1)">{formState.errors.email[0]}</p> : null
-            }
+            {hasError("email") ? (
+              <p color="hsla(359,98%,68%,1)">{formState.errors.email[0]}</p>
+            ) : null}
           </InputDiv>
           <InputDiv>
-            <Label
-              medium
-            >
-              Password
-            </Label>
+            <Label medium>Password</Label>
             <Input
-            required
+              required
               small
               type="password"
               onChange={handleChange}
               name="password"
-              value={formState.values.password || ''}
+              value={formState.values.password || ""}
             />
-            
-            {
-              hasError('password') ? <p className='' color="hsla(359,98%,68%,1)">{formState.errors.password[0]}</p> : null
-            }
-            </InputDiv>
-            <AntButton
+
+            {hasError("password") ? (
+              <p className="" color="hsla(359,98%,68%,1)">
+                {formState.errors.password[0]}
+              </p>
+            ) : null}
+          </InputDiv>
+          <AntButton
             type="primary"
             disabled={!formState.isValid}
             // loading={!!(error)}
-            onClick={async (event) => {
+            onClick={async event => {
               handleSubmit(event, formState.values);
             }}
             style={{
               backgroundColor: "#4FB4C2",
-              width: '18.5rem',
-              height: '3rem',
-              fontSize:"16px",
-              color:'white',
-              borderRadius: '0.5rem',
-              cursor:'pointer'
-
+              width: "18.5rem",
+              height: "3rem",
+              fontSize: "16px",
+              color: "white",
+              borderRadius: "0.5rem",
+              cursor: "pointer"
             }}
           >
-              
             Login
           </AntButton>
-          <p>Don't have an account? signup<NavLink className='register' to="/register"> here</NavLink> </p>
-                   </StyledForm>
-                   
-                   
-               </BorderDiv>
-           {/* </div> */}
-           
-        </div>
-    )
-}
-
+          <p>
+            Don't have an account? signup
+            <NavLink className="register" to="/register">
+              {" "}
+              here
+            </NavLink>{" "}
+          </p>
+        </StyledForm>
+      </BorderDiv>
+      {/* </div> */}
+    </div>
+  );
+};
 
 const mapStateToProps = state => ({
   userData: state.user.user,
-  error: state.user.error,
+  error: state.user.error
 });
 
-export default connect(mapStateToProps,{doSignIn})(Login)
+export default connect(mapStateToProps, { doSignIn })(Login);
 
-
-const BorderDiv= styled.div`
-  `
-  export const StyledForm = styled.form`
+const BorderDiv = styled.div``;
+export const StyledForm = styled.form`
   width: 400px;
   height: 350px;
-  background: #FFFFFF;
-  border: 1px solid #DDF8FC;
+  background: #ffffff;
+  border: 1px solid #ddf8fc;
   box-sizing: border-box;
   padding-top: 1.5rem;
-  padding-bottom:0.5rem;
+  padding-bottom: 0.5rem;
   border-radius: 5px;
   box-align: center;
   position: absolute;
@@ -185,13 +183,11 @@ const BorderDiv= styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+`;
 
-  `
-
-  export const InputDiv = styled.div`
+export const InputDiv = styled.div`
   margin-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
-  align-items:flex-start
+  align-items: flex-start;
 `;
