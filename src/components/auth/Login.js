@@ -95,6 +95,7 @@ const Login =({doSignIn,error,history})=> {
               Email
             </Label>
                    <Input
+                   required
               small
               type="text"
               onChange={handleChange}
@@ -112,6 +113,7 @@ const Login =({doSignIn,error,history})=> {
               Password
             </Label>
             <Input
+            required
               small
               type="password"
               onChange={handleChange}
@@ -120,7 +122,7 @@ const Login =({doSignIn,error,history})=> {
             />
             
             {
-              hasError('password') ? <p color="hsla(359,98%,68%,1)">{formState.errors.password[0]}</p> : null
+              hasError('password') ? <p className='' color="hsla(359,98%,68%,1)">{formState.errors.password[0]}</p> : null
             }
             </InputDiv>
             <AntButton
@@ -132,7 +134,7 @@ const Login =({doSignIn,error,history})=> {
             }}
             style={{
               backgroundColor: "#4FB4C2",
-              width: '17.5rem',
+              width: '18.5rem',
               height: '3rem',
               fontSize:"16px",
               color:'white',
@@ -193,5 +195,3 @@ const BorderDiv= styled.div`
   flex-direction: column;
   align-items:flex-start
 `;
-
-
