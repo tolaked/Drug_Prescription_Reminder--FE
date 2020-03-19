@@ -21,7 +21,11 @@ const signInRequest = payload => ({
   
   export const doSignIn = (user) => dispatch => {
     dispatch(signInRequest(true));
-    axios.post({ method: 'POST', url: 'https://drug-prescription-app.herokuapp.com/api/v1/prescription/add',user})
+    
+    axios.post({
+       method: 'POST', 
+       url: 'https://drug-prescription-app.herokuapp.com/api/v1/users/login',
+       user})
       .then(({ data }) => {
         Cookie.set('token', data.user.token);
         

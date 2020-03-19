@@ -21,8 +21,11 @@ export const signUpError = payload =>({
 export const doSignUp = (user) => dispatch => {
   dispatch(signUpRequest(true));
   axios
-    .post({ method: 'POST', url: 'https://drug-prescription-app.herokuapp.com/api/v1/prescription/add',user, headers:{'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'application/json'}})
+    .post({ 
+      method: 'POST', 
+      url: 'https://drug-prescription-app.herokuapp.com/api/v1/users/register',
+      user
+    })
     .then(({ data }) => {
       Cookie.set('token', data.user.token);
       dispatch(signUpSuccess(data.user));

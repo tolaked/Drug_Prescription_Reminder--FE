@@ -29,10 +29,9 @@ export const deletePrescriptionSuccess =(payload)=>({
 
 export const addPrescription = (data) => dispatch => {
   const token = Cookie.get('token');
-  axios({ method: 'POST', url: 'https://drug-prescription-app.herokuapp.com/api/v1/prescription/add',data, headers:{'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/json',
-    'Authorization': token,}})
-   
+  axios({ method: 'POST', 
+  url: 'https://drug-prescription-app.herokuapp.com/api/v1/prescription/add',
+    'Authorization': token})
     .then(({ data }) => {
       dispatch(getSinglePresriptionSuccess(data));
     })
@@ -44,12 +43,10 @@ export const getPrescriptions = () => dispatch => {
   dispatch(getPrescriptionRequest(true));
   const token = Cookie.get('token');
   axios(
-    { method: 'GET', url: 'https://drug-prescription-app.herokuapp.com/api/v1/prescription', headers:{'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/json',
-    'Authorization': token,}})
-   
+    { method: 'GET', 
+    url: 'https://drug-prescription-app.herokuapp.com/api/v1/prescription',
+    'Authorization': token})
     .then(({ data }) => {
-      
       dispatch(getPrescriptionSuccess(data.prescription));
     })
     .catch(error => {
@@ -62,11 +59,9 @@ export const fetchSinglePrescription = (id) => dispatch => {
   dispatch(getSinglePresriptionSuccess(true));
   const token = Cookie.get('token');
   axios(
-    { method: 'GET', url: `https://drug-prescription-app.herokuapp.com/api/v1/prescription/find/${id}`, headers:{'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/json',
-    'Authorization': token}})
-   
-    .then(({ data }) => {
+    { method: 'GET', 
+    url: `https://drug-prescription-app.herokuapp.com/api/v1/prescription/find/${id}`,
+    'Authorization': token}).then(({ data }) => {
       dispatch(getSinglePresriptionSuccess(data));
      
     })
@@ -78,11 +73,11 @@ export const fetchSinglePrescription = (id) => dispatch => {
 export const deletePrescription = (id) => dispatch => {
   const token = Cookie.get('token');
   axios(
-    { method: 'DELETE', url: `https://drug-prescription-app.herokuapp.com/api/v1/prescription/${id}`, headers:{'Access-Control-Allow-Origin': '*',
-  'Content-Type': 'application/json',
-    'Authorization': token}})
-   
-    .then(({ data }) => {
+    { 
+      method: 'DELETE', 
+    url: `https://drug-prescription-app.herokuapp.com/api/v1/prescription/${id}`,
+    'Authorization': token
+  }).then(({ data }) => {
       
       dispatch(deletePrescriptionSuccess(data.prescription));
     })
