@@ -1,11 +1,7 @@
 import React from 'react'
-import { Route } from "react-router-dom";
 import Header from '../../reusables/Header'
 import '../../assets/styles/styles.css'
 import Background from '../../assets/images/background-image.jpeg'
-import Login from '../auth/Login';
-import Register from '../auth/Register';
-import AddPrescription from '../prescriptions/Addprescriptions';
 
 const Homepage = ({alt}) => {
     return (
@@ -22,11 +18,6 @@ const Homepage = ({alt}) => {
                </section>
                </div>
 }
-
-               {/* <Route exact path='/' alt component={Login}/>
-               <Route exact path='/register' alt component={Register}/> */}
-               {/* <Route exact path='/add' component={AddPrescription}/> */}
-               
         </div>
     )
 }

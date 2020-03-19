@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import Modal from './Modal';
 import '../prescriptionCard/styles.css'
-const TopContent = () => {
+const LeftAside = () => {
 
   const [show,setShow] = useState(false)
 
@@ -26,5 +26,5 @@ const TopContent = () => {
   );
 }
 
-export default TopContent;
+export default LeftAside;
 

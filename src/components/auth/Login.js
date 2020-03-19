@@ -87,6 +87,7 @@ const Login =({doSignIn,error,history})=> {
           <Homepage alt/>
                    <BorderDiv>
                    <StyledForm>
+                     <h2>Login to your account</h2>
                        <InputDiv>
                        <Label
               medium
@@ -130,12 +131,13 @@ const Login =({doSignIn,error,history})=> {
               handleSubmit(event, formState.values);
             }}
             style={{
-              backgroundColor: `${!formState.isValid ? '#4FB4C2' : "#4FB4C2"}`,
+              backgroundColor: "#4FB4C2",
               width: '17.5rem',
               height: '3rem',
               fontSize:"16px",
               color:'white',
               borderRadius: '0.5rem',
+              cursor:'pointer'
 
             }}
           >
