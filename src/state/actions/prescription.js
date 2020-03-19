@@ -31,7 +31,7 @@ export const addPrescription = prescription => dispatch => {
   const token = Cookie.get("token");
 
   axios
-    .post("http://loclhost:5000/api/v1/prescription/add", prescription, {
+    .post("https://drug-prescription-app.herokuapp.com/api/v1/prescription/add", prescription, {
       headers: {
         Authorization: token
       }

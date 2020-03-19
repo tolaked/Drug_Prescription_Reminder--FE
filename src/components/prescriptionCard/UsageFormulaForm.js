@@ -115,20 +115,7 @@ function UsageFormulaForm({ handleHide, show, children }) {
               onChange={handleChange}
             />
           </InputDiv>
-          <button
-            type="primary"
-            type="primary"
-            style={{
-              width: "18.5rem",
-              background: "#4FB4C2",
-              height: "2.5rem",
-              fontSize: "16px",
-              color: "white",
-              borderRadius: "5px"
-            }}
-          >
-            Add prescription
-          </button>
+          <button type="primary" className="btn add-formula-btn">Add prescription</button>
         </StyledForm>
       </section>
     </div>

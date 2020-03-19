@@ -25,14 +25,19 @@ export const addUsageFormulaError = payload => ({
   payload
 });
 
-export const addFormula = (data, id) => dispatch => {
+export const addFormula = (formula, id) => dispatch => {
   const token = Cookie.get("token");
-  axios({
-    method: "POST",
-    url: `https://drug-prescription-app.herokuapp.com/api/v1/formula/add/${id}`,
-    data,
-    Authorization: token
-  })
+
+  axios
+    .post(
+      `https://drug-prescription-app.herokuapp.com/api/v1/formula/add/${id}`,
+      formula,
+      {
+        headers: {
+          Authorization: token
+        }
+      }
+    )
     .then(({ data }) => {
       dispatch(addUsageFormulaSuccess(data));
     })
@@ -43,12 +48,15 @@ export const addFormula = (data, id) => dispatch => {
 
 export const getFormula = id => dispatch => {
   dispatch(getUsageFormulaRequest(true));
+
   const token = Cookie.get("token");
-  axios({
-    method: "GET",
-    url: `https://drug-prescription-app.herokuapp.com/api/v1/formula/${id}`,
-    Authorization: token
-  })
+
+  axios
+    .get(`https://drug-prescription-app.herokuapp.com/api/v1/formula/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    })
     .then(({ data }) => {
       dispatch(getUsageFormulaSuccess(data));
     })

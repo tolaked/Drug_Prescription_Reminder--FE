@@ -13,22 +13,24 @@ function UsageFormulaCard({ handleHide, usageCard, children }) {
   return (
     <div className={showHideClassName}>
       <section className="usage-modal">
-        {children}
-        <div className="close" onClick={handleHide}>
-          x
-        </div>
-        <h1>Usage formula</h1>
-
-        {formula && formula._id ? (
-          <div className="usageFormula-card">
-            <h4 style={{ margin: "0px" }}>frequency:{formula.frequency}</h4>
-            <h4>Dose:{formula.dose}</h4>
-            <h4>To be taken:{formula.number_of_times} times</h4>
-            <button>Edit formula</button>
+        <div className="usageFormula-card">
+          {children}
+          <div className="close" onClick={handleHide}>
+            x
           </div>
-        ) : (
-          <p>No usage formula for this prescription</p>
-        )}
+          <h1>Usage formula</h1>
+
+          {formula && formula._id ? (
+            <div>
+              <h4>frequency:{formula.frequency}</h4>
+              <h4>Dose:{formula.dose}</h4>
+              <h4>To be taken:{formula.number_of_times} times</h4>
+              <button className="btn">Edit formula</button>
+            </div>
+          ) : (
+            <p>No usage formula for this prescription</p>
+          )}
+        </div>
       </section>
     </div>
   );

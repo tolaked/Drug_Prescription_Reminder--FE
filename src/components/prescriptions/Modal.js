@@ -93,14 +93,8 @@ function Modal({ handleHide, show, children, addPrescription, prescriptions }) {
           </InputDiv>
           <button
             type="primary"
-            style={{
-              width: "18.5rem",
-              background: "#4FB4C2",
-              height: "2.5rem",
-              fontSize: "16px",
-              color: "white",
-              borderRadius: "5px"
-            }}
+            className="btn"
+            style={{ width: "297px", height: "33px" }}
           >
             Add prescription
           </button>
@@ -117,9 +111,8 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { addPrescription })(Modal);
 
 export const StyledForm = Styled.form`
-display:flex;
+  display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  margin-left:20px
   `;
