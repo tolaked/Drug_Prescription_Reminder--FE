@@ -28,7 +28,7 @@ export const addUsageFormulaError = payload =>({
 
 export const addFormula = (data,id) => dispatch => {
   const token = Cookie.get('token');
-  axios({ method: 'POST', url: `http://localhost:5000/api/v1/formula/add/${id}`,data, headers:{'Access-Control-Allow-Origin': '*',
+  axios({ method: 'POST', url: `https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/formula/add/${id}`,data, headers:{'Access-Control-Allow-Origin': '*',
   'Content-Type': 'application/json',
     'Authorization': token,}})
    
@@ -43,7 +43,7 @@ export const addFormula = (data,id) => dispatch => {
 export const getFormula = (id) => dispatch => {
     dispatch(getUsageFormulaRequest(true))
     const token = Cookie.get('token');
-    axios({ method: 'GET', url: `http://localhost:5000/api/v1/formula/${id}`, headers:{'Access-Control-Allow-Origin': '*',
+    axios({ method: 'GET', url: `https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/formula/${id}`, headers:{'Access-Control-Allow-Origin': '*',
     'Content-Type': 'application/json',
       'Authorization': token,}})
 

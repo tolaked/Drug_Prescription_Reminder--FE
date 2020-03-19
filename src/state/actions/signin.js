@@ -21,7 +21,7 @@ const signInRequest = payload => ({
   
   export const doSignIn = (user) => dispatch => {
     dispatch(signInRequest(true));
-    axios.post('http://localhost:5000/api/v1/users/login', user)
+    axios.post('https://dashboard.heroku.com/apps/drug-prescription-app/api/v1/users/login', user)
       .then(({ data }) => {
         Cookie.set('token', data.user.token);
         
