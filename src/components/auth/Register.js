@@ -104,6 +104,7 @@ const Register =({doSignUp})=> {
             <Homepage alt/>
                    <BorderDiv>
                    <StyledForm>
+                     <h2 >Create an account</h2>
                        <InputDiv>
                        <Label
               medium
@@ -209,7 +210,7 @@ const Register =({doSignUp})=> {
               
             signup
           </AntButton>
-          <p>Already have an account? signup <NavLink className='login-link' to='/'>here</NavLink></p>
+          <p>Already have an account? Login <NavLink className='login-link' to='/'>here</NavLink></p>
                    </StyledForm>
                    
                    
@@ -232,16 +233,16 @@ const BorderDiv= styled.div`
   `
   const StyledForm = styled.form`
   width: 460px;
-  height: 500px;
+  height: 520px;
   background: #FFFFFF;
   border: 1px solid #DDF8FC;
   box-sizing: border-box;
-  padding-top: 1rem;
-  padding-bottom:0.5rem;
+  /* padding-top: 0.2rem; */
+  padding-bottom:0.3rem;
   border-radius: 5px;
   box-align: center;
   position: absolute;
-  top: 58vh;
+  top: 56vh;
   left: 77%;
   transform: translate(-50%, -50%);
   display: flex;

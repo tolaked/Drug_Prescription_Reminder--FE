@@ -42,6 +42,12 @@ export default function reducer(state = initialState, action) {
           prescription:{},
           error:action.payload,
         }
+        case types.DELETE_PRESCRIPTION_SUCCESS:
+        return{
+          ...state,
+          requesting:false,
+          prescriptions: state.prescriptions.filter(pres=>pres._id !== action.payload._id),
+        }
     default:
       return state;
   }

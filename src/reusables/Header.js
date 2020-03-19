@@ -1,9 +1,12 @@
 import React from 'react'
+import Cookie from 'js-cookie'
 import {withRouter, NavLink} from 'react-router-dom'
 import Logo from '../assets/images/logo.jpeg'
 import '../assets/styles/styles.css'
 
 const Header =() => {
+
+ 
     return (
         <div className='header'>
             <div className='logo'>
@@ -14,7 +17,7 @@ const Header =() => {
             <NavLink className="navlink" to="/" activeClassName="active">
             Home
           </NavLink>
-          <NavLink className="navlink" to="/prescriptions" activeClassName="active">
+          <NavLink className="navlink" to="/add" activeClassName="active">
             Prescriptions
           </NavLink>
           <NavLink className="navlink" to="/prescriptions" activeClassName="active">

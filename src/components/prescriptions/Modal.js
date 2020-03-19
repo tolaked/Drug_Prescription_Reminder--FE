@@ -35,7 +35,8 @@ function Modal({handleHide, show, children,addPrescription,prescriptions}) {
             {children}
             <div className='close' onClick={handleHide}>x</div>
         <StyledForm onSubmit={handleSubmit}>
-            <h4>Add a new prescription</h4>
+        
+            <h4 >Add a new prescription</h4>
             <InputDiv>
             <Label medium htmlFor='drug'>Drug</Label>
             <Input
@@ -78,20 +79,13 @@ function Modal({handleHide, show, children,addPrescription,prescriptions}) {
             onChange={handleChange}/>
             </InputDiv>
             <button
-            type="primary"
-            
-            style={{
-              backgroundColor: '#4FB4C2',
-              width: '18.5rem',
-              height: '3rem',
-              fontSize:"16px",
-              color:'white',
-              borderRadius: '0.5rem',
-              cursor:'pointer',
-              marginTop:'10px'
-
-            }}
-          >
+            type="primary" 
+            style={{width: '18.5rem',
+            background:'#4FB4C2',
+            height: '2.5rem',
+            fontSize:"16px",
+            color:'white',
+            borderRadius: '5px',}}>
               
             Add prescription
           </button>
@@ -109,11 +103,9 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps,{addPrescription})(Modal)
 
 export const StyledForm = Styled.form`
-  display:flex;
+display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  margin-left:45px
- 
+  margin-left:20px
   `
-

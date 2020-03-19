@@ -22,6 +22,11 @@ export const getSinglePresription =(payload)=>({
   payload
 })
 
+export const deletePrescriptionSuccess =(payload)=>({
+  type: types.DELETE_PRESCRIPTION_SUCCESS,
+  payload
+})
+
 export const addPrescription = (data) => dispatch => {
   const token = Cookie.get('token');
   axios({ method: 'POST', url: 'http://localhost:5000/api/v1/prescription/add',data, headers:{'Access-Control-Allow-Origin': '*',
@@ -35,7 +40,6 @@ export const addPrescription = (data) => dispatch => {
     });
 };
 
-
 export const getPrescriptions = () => dispatch => {
   dispatch(getPrescriptionRequest(true));
   const token = Cookie.get('token');
@@ -46,7 +50,8 @@ export const getPrescriptions = () => dispatch => {
    
     .then(({ data }) => {
       
-      dispatch(getPrescriptionSuccess(data));
+      dispatch(getPrescriptionSuccess(data.prescription));
+      console.log('OMOOO',data)
     })
     .catch(error => {
       console.log(error.response)
@@ -63,8 +68,24 @@ export const fetchSinglePrescription = (id) => dispatch => {
     'Authorization': token}})
    
     .then(({ data }) => {
-      
       dispatch(getSinglePresriptionSuccess(data));
+     
+    })
+    .catch(error => {
+      console.log(error.response)
+    });
+};
+
+export const deletePrescription = (id) => dispatch => {
+  const token = Cookie.get('token');
+  axios(
+    { method: 'DELETE', url: `http://localhost:5000/api/v1/prescription/${id}`, headers:{'Access-Control-Allow-Origin': '*',
+  'Content-Type': 'application/json',
+    'Authorization': token}})
+   
+    .then(({ data }) => {
+      
+      dispatch(deletePrescriptionSuccess(data.prescription));
     })
     .catch(error => {
       console.log(error.response)
