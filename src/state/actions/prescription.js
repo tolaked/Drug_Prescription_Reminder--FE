@@ -27,6 +27,12 @@ export const deletePrescriptionSuccess = payload => ({
   payload
 });
 
+export const addPrescriptionSuccess = payload => ({
+  type: types.ADD_PRESCRIPTION_SUCCESS,
+  payload
+});
+
+
 export const addPrescription = prescription => dispatch => {
   const token = Cookie.get("token");
 
@@ -37,7 +43,7 @@ export const addPrescription = prescription => dispatch => {
       }
     })
     .then(({ data }) => {
-      dispatch(getSinglePresriptionSuccess(data));
+      dispatch(addPrescriptionSuccess(data));
     })
     .catch(error => {
       return error;

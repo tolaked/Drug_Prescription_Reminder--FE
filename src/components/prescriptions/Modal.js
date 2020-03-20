@@ -1,14 +1,13 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Styled from "styled-components";
-import { connect } from "react-redux";
-// import { FontAwesomeIcon } from "@fontawesome/react-fontawesome";
-import { addPrescription } from "../../state/actions/prescription";
+import { addPrescription,getPrescriptions } from "../../state/actions/prescription";
 import Input from "../../reusables/Input";
 import Label from "../../reusables/Label";
 import { InputDiv } from "../auth/Login";
 import "../prescriptionCard/styles.css";
 
-function Modal({ handleHide, show, children, addPrescription, prescriptions }) {
+function Modal({ handleHide, show, children }) {
   const initialState = {
     drug: "",
     unit: "",
@@ -17,6 +16,10 @@ function Modal({ handleHide, show, children, addPrescription, prescriptions }) {
   };
   const [form, setForm] = useState(initialState);
   const showHideClassName = show ? "modal display-block" : "modal display-none";
+
+  const prescriptions =
+  useSelector(state => state.prescription.prescriptions) || [];
+const dispatch = useDispatch();
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -28,7 +31,8 @@ function Modal({ handleHide, show, children, addPrescription, prescriptions }) {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    addPrescription(form);
+    dispatch(addPrescription(form));
+    dispatch(getPrescriptions())
   };
   return (
     <div className={showHideClassName}>
@@ -104,11 +108,7 @@ function Modal({ handleHide, show, children, addPrescription, prescriptions }) {
   );
 }
 
-const mapStateToProps = state => ({
-  prescriptions: state.prescription.prescriptions.prescription
-});
-
-export default connect(mapStateToProps, { addPrescription })(Modal);
+export default Modal;
 
 export const StyledForm = Styled.form`
   display:flex;

@@ -32,7 +32,8 @@ export const doSignUp = user => dispatch => {
     })
     .catch(error => {
       dispatch(signUpError(error.response));
+      dispatch(signUpRequest(false));
       return error.response;
     });
-  dispatch(signUpRequest(false));
+  
 };

@@ -50,6 +50,12 @@ export default function reducer(state = initialState, action) {
           pres => pres._id !== action.payload._id
         )
       };
+      case types.ADD_PRESCRIPTION_SUCCESS:
+        return {
+          ...state,
+          requesting: false,
+          prescriptions: [...state.prescriptions,action.payload]
+        };
     default:
       return state;
   }

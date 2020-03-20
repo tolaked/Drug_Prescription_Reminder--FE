@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button as AntButton } from "antd";
 import validate from "validate.js";
 
@@ -29,7 +29,7 @@ const schema = {
 };
 
 const Login = props => {
-  const { doSignIn, error } = props;
+  const dispatch = useDispatch();
 
   const [formState, setFormState] = useState({
     isValid: false,
@@ -82,11 +82,12 @@ const Login = props => {
       loading: true
     });
 
-    doSignIn(formState.values).then(res => {
+    dispatch(doSignIn(formState.values).then(res => {
       if (res.status !== 400) {
         props.history.push("/add");
       }
-    });
+    })
+    );
   };
   return (
     <div>
@@ -163,7 +164,7 @@ const mapStateToProps = state => ({
   error: state.user.error
 });
 
-export default connect(mapStateToProps, { doSignIn })(Login);
+export default Login;
 
 const BorderDiv = styled.div``;
 export const StyledForm = styled.form`

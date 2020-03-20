@@ -4,7 +4,16 @@ import { withRouter, NavLink } from "react-router-dom";
 import Logo from "../assets/images/logo.jpeg";
 import "../assets/styles/styles.css";
 
-const Header = () => {
+const Header = (props) => {
+  const logout = () => {
+    const cookie = Cookie.get('token');
+    if(cookie){
+      Cookie.remove('token');
+      props.history.push('/')
+    }
+  
+  };
+
   return (
     <div className="header">
       <div className="logo">
@@ -25,7 +34,7 @@ const Header = () => {
         >
           support
         </NavLink>
-        <NavLink className="navlink" to="/" activeClassName="active">
+        <NavLink onClick={logout} className="navlink" to="/" activeClassName="active">
           Logout
         </NavLink>
       </div>
