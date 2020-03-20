@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookie from "js-cookie";
+import history from '../../history';
 import * as types from "../actionTypes/users";
 
 const signInRequest = payload => ({
@@ -29,6 +30,7 @@ export const doSignIn = user => dispatch => {
       Cookie.set("token", data.user.token);
 
       dispatch(signInSuccess(data.user));
+      history.push("/add");
       return data;
     })
     .catch(error => {

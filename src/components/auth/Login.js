@@ -82,12 +82,9 @@ const Login = props => {
       loading: true
     });
 
-    dispatch(doSignIn(formState.values).then(res => {
-      if (res.status !== 400) {
-        props.history.push("/add");
-      }
-    })
+    dispatch(doSignIn(formState.values)
     );
+   
   };
   return (
     <div>
