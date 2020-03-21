@@ -6,8 +6,6 @@ import LeftAside from "./LeftAside";
 import AllCards from "../prescriptionCard/AllCards";
 
 const Addprescriptions = () => {
-  // const loggedOut = useSelector(state=>state.user.loggedOut) 
-  // console.log('ADD PRESCRIPTION LOG OUT', loggedOut)
   return (
     <>
       <Header />

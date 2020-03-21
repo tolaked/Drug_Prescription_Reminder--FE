@@ -14,7 +14,7 @@ const PrescriptionCard = () => {
   const [shows, setShow] = useState(false);
   const [usageCard, setUsageCard] = useState(false);
 
-  console.log("rerender");
+
 
   const prescriptions =
     useSelector(state => state.prescription.prescriptions) || [];

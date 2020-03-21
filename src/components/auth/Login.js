@@ -30,8 +30,6 @@ const schema = {
 };
 
 const Login = () => {
-  // const loggedOut = useSelector(state=>state.user.loggedOut) 
-  // console.log('LOGOUTTTT', loggedOut)
   const dispatch = useDispatch();
 
   const [formState, setFormState] = useState({
