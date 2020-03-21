@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
@@ -28,7 +29,9 @@ const schema = {
   }
 };
 
-const Login = props => {
+const Login = () => {
+  // const loggedOut = useSelector(state=>state.user.loggedOut) 
+  // console.log('LOGOUTTTT', loggedOut)
   const dispatch = useDispatch();
 
   const [formState, setFormState] = useState({
@@ -88,7 +91,7 @@ const Login = props => {
   };
   return (
     <div>
-      <Homepage alt />
+      <Homepage alt/>
       <BorderDiv>
         <StyledForm>
           <h2>Login to your account</h2>
@@ -151,15 +154,10 @@ const Login = props => {
           </p>
         </StyledForm>
       </BorderDiv>
-      {/* </div> */}
     </div>
   );
 };
 
-const mapStateToProps = state => ({
-  userData: state.user.user,
-  error: state.user.error
-});
 
 export default Login;
 

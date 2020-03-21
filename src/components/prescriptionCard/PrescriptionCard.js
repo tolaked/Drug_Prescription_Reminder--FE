@@ -56,7 +56,7 @@ const PrescriptionCard = () => {
           usageCard={usageCard}
           formula={formula}
         />
-        {(prescriptions.length > 0)? prescriptions.map(pres => (
+        {(prescriptions.length > 0) && prescriptions.map(pres => (
           <div key={pres._id} className="card">
             <div>
               <h2 className="h2">{pres.drug}</h2>
@@ -90,8 +90,8 @@ const PrescriptionCard = () => {
             </div>
           </div>
         ))
-        : <h3>You have no prescriptions yet</h3>
       }
+     
       </div>
     </div>
   );

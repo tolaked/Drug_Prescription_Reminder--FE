@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookie from "js-cookie";
+import history from '../../history';
 import * as types from "../actionTypes/prescriptions";
 
 export const getSinglePresriptionSuccess = payload => ({
@@ -44,6 +45,7 @@ export const addPrescription = prescription => dispatch => {
     })
     .then(({ data }) => {
       dispatch(addPrescriptionSuccess(data));
+      history.push("/add");
     })
     .catch(error => {
       return error;

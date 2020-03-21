@@ -1,6 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addFormula } from "../../state/actions/usageFormula";
+import { useSelector } from "react-redux";
 import "../prescriptionCard/styles.css";
 
 function UsageFormulaCard({ handleHide, usageCard, children }) {

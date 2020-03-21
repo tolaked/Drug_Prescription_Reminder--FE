@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookie from "js-cookie";
+import history from '../../history';
 import * as types from "../actionTypes/usageFormula";
 
 export const getUsageFormulaSuccess = payload => ({
@@ -40,6 +41,7 @@ export const addFormula = (formula, id) => dispatch => {
     )
     .then(({ data }) => {
       dispatch(addUsageFormulaSuccess(data));
+      history.push("/add");
     })
     .catch(error => {
       dispatch(addUsageFormulaError(error));

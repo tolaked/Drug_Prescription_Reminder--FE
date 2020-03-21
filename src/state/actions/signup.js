@@ -1,5 +1,6 @@
 import axios from "axios";
 import Cookie from "js-cookie";
+import history from '../../history'
 import * as types from "../actionTypes/users";
 
 export const signUpRequest = payload => ({
@@ -28,6 +29,7 @@ export const doSignUp = user => dispatch => {
       Cookie.set("token", data.user.token);
 
       dispatch(signUpSuccess(data.user));
+      history.push("/add");
       return data;
     })
     .catch(error => {

@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useSelector } from 'react-redux';
 import styled from "styled-components";
 import Header from "../../reusables/Header.js";
 import LeftAside from "./LeftAside";
 import AllCards from "../prescriptionCard/AllCards";
 
 const Addprescriptions = () => {
+  // const loggedOut = useSelector(state=>state.user.loggedOut) 
+  // console.log('ADD PRESCRIPTION LOG OUT', loggedOut)
   return (
     <>
       <Header />

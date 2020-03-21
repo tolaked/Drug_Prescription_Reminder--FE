@@ -3,7 +3,7 @@ import * as types from "../actionTypes/users";
 const initialState = {
   requesting: false,
   user: {},
-  logged: false,
+  loggedOut: true,
   error: null
 };
 
@@ -13,14 +13,14 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         requesting: action.payload,
-        logged: false
+        loggedOut: false
       };
     case types.SIGNIN_SUCCESS:
       return {
         ...state,
         requesting: false,
         user: action.payload,
-        logged: true,
+        loggedOut: false,
         error: null
       };
     case types.SIGNIN_ERROR:
@@ -28,21 +28,21 @@ export default function reducer(state = initialState, action) {
         ...state,
         requesting: false,
         user: {},
-        logged: false,
+        loggedOut: false,
         error: action.payload
       };
     case types.SIGNUP_REQUEST:
       return {
         ...state,
         requesting: action.payload,
-        logged: false
+        loggedOut: false
       };
     case types.SIGNUP_SUCCESS:
       return {
         ...state,
         requesting: false,
         user: action.payload,
-        logged: true,
+        loggedOut: false,
         error: null
       };
     case types.SIGNUP_ERROR:
@@ -50,28 +50,28 @@ export default function reducer(state = initialState, action) {
         ...state,
         requesting: false,
         user: {},
-        logged: false,
+        loggedOut: false,
         error: action.payload
       };
     case types.LOGOUT_REQUEST:
       return {
         ...state,
         requesting: action.payload,
-        logged: true
+        loggedOut: true
       };
     case types.LOGOUT_SUCCESS:
       return {
         ...state,
         requesting: false,
         user: {},
-        logged: action.payload,
+        loggedOut: action.payload,
         error: null
       };
     case types.LOGOUT_ERROR:
       return {
         ...state,
         requesting: false,
-        logged: true,
+        loggedOut: true,
         error: action.payload
       };
     default:

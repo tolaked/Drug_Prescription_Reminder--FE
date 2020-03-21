@@ -18,6 +18,11 @@ const signInError = payload => ({
   payload
 });
 
+export const logOutSuccess = payload => ({
+  type: types.LOGOUT_SUCCESS,
+  payload
+});
+
 export const doSignIn = user => dispatch => {
   dispatch(signInRequest(true));
 
@@ -29,7 +34,7 @@ export const doSignIn = user => dispatch => {
     .then(({ data }) => {
       Cookie.set("token", data.user.token);
 
-      dispatch(signInSuccess(data.user));
+      dispatch(signInSuccess(data.user.email));
       history.push("/add");
       return data;
     })
@@ -38,3 +43,4 @@ export const doSignIn = user => dispatch => {
       return error.response;
     });
 };
+
