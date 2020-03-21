@@ -16,7 +16,7 @@ const Homepage = ({ alt }) => {
                 An app that helps you keep track of your drug prescriptions
               </h4>
             </div>
-            <img className="app-image" src={Background} alt="app-image" />
+            <img className="app-image" src={Background} alt="app-background" />
           </section>
         </div>
       )}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Styled from "styled-components";
 import { addPrescription,getPrescriptions } from "../../state/actions/prescription";
 import Input from "../../reusables/Input";
@@ -17,8 +17,6 @@ function Modal({ handleHide, show, children }) {
   const [form, setForm] = useState(initialState);
   const showHideClassName = show ? "modal display-block" : "modal display-none";
 
-  const prescriptions =
-  useSelector(state => state.prescription.prescriptions) || [];
 const dispatch = useDispatch();
 
   const handleChange = e => {
@@ -31,8 +29,11 @@ const dispatch = useDispatch();
   };
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(addPrescription(form));
+    dispatch(addPrescription(form))
     dispatch(getPrescriptions())
+    handleHide(e)
+    setForm(initialState)
+    
   };
   return (
     <div className={showHideClassName}>
