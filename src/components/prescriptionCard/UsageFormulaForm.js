@@ -35,6 +35,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
   const handleSubmit = (e, id) => {
     e.preventDefault();
     dispatch(addFormula(form, id));
+    handleHide(e)
   };
 
   return (
