@@ -1,10 +1,10 @@
 import React from "react";
-import PrescriptionCard from "./PrescriptionCard";
+import AllPrescriptions from "./AllPrescriptions";
 
 function AllCards() {
   return (
     <div className="allcards">
-      <PrescriptionCard />
+      <AllPrescriptions />
     </div>
   );
 }

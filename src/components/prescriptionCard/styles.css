@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 30px;
+  padding: 8px;
 }
 
 .card {
@@ -153,3 +153,19 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.pagination {
+  margin-top: 5px;
+display:flex;
+justify-content: center;
+}
+.pagination span {
+cursor: pointer;
+color: black;
+float: left;
+padding: 4px 16px;
+text-decoration: none;
+transition: background-color .3s;
+border: 1px solid #ddd;
+}
+

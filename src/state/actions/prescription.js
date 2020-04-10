@@ -1,58 +1,66 @@
 import axios from "axios";
 import Cookie from "js-cookie";
-import history from '../../history';
+import history from "../../history";
 import * as types from "../actionTypes/prescriptions";
 
-export const getSinglePresriptionSuccess = payload => ({
+export const getSinglePresriptionSuccess = (payload) => ({
   type: types.GET_SINGLE_PRESCRIPTION_REQUEST,
-  payload
+  payload,
 });
 
-export const getPrescriptionRequest = payload => ({
+export const getPrescriptionRequest = (payload) => ({
   type: types.GET_PRESCRIPTIONS_REQUEST,
-  payload
+  payload,
 });
 
-export const getPrescriptionSuccess = payload => ({
+export const getPrescriptionSuccess = (payload) => ({
   type: types.GET_PRESCRIPTIONS_SUCCESS,
-  payload
+  payload,
 });
 
-export const getSinglePresription = payload => ({
+export const getSinglePresription = (payload) => ({
   type: types.GET_PRESCRIPTIONS_ERROR,
-  payload
+  payload,
 });
 
-export const deletePrescriptionSuccess = payload => ({
+export const deletePrescriptionSuccess = (payload) => ({
   type: types.DELETE_PRESCRIPTION_SUCCESS,
-  payload
+  payload,
 });
 
-export const addPrescriptionSuccess = payload => ({
+export const addPrescriptionSuccess = (payload) => ({
   type: types.ADD_PRESCRIPTION_SUCCESS,
-  payload
+  payload,
 });
 
+const setPrescriptons = (prescriptions) => ({
+  type: types.SET_PRESCRIPTIONS,
+  payload: prescriptions,
+});
 
-export const addPrescription = prescription => dispatch => {
+export const addPrescription = (prescription) => (dispatch) => {
   const token = Cookie.get("token");
 
   axios
-    .post("https://drug-prescription-app.herokuapp.com/api/v1/prescription/add", prescription, {
-      headers: {
-        Authorization: token
+    .post(
+      "https://drug-prescription-app.herokuapp.com/api/v1/prescription/add",
+      prescription,
+      {
+        headers: {
+          Authorization: token,
+        },
       }
-    })
+    )
     .then(({ data }) => {
       dispatch(addPrescriptionSuccess(data));
       history.push("/add");
     })
-    .catch(error => {
+    .catch((error) => {
       return error;
     });
 };
 
-export const getPrescriptions = () => dispatch => {
+export const getPrescriptions = () => (dispatch) => {
   dispatch(getPrescriptionRequest(true));
 
   const token = Cookie.get("token");
@@ -60,16 +68,16 @@ export const getPrescriptions = () => dispatch => {
   axios
     .get("https://drug-prescription-app.herokuapp.com/api/v1/prescription", {
       headers: {
-        Authorization: token
-      }
+        Authorization: token,
+      },
     })
     .then(({ data }) => {
       dispatch(getPrescriptionSuccess(data.prescription));
     })
-    .catch(error => error.response);
+    .catch((error) => error.response);
 };
 
-export const fetchSinglePrescription = id => dispatch => {
+export const fetchSinglePrescription = (id) => (dispatch) => {
   dispatch(getSinglePresriptionSuccess(true));
 
   const token = Cookie.get("token");
@@ -79,29 +87,30 @@ export const fetchSinglePrescription = id => dispatch => {
       `https://drug-prescription-app.herokuapp.com/api/v1/prescription/find/${id}`,
       {
         headers: {
-          Authorization: token
-        }
+          Authorization: token,
+        },
       }
     )
     .then(({ data }) => {
       dispatch(getSinglePresriptionSuccess(data));
     })
-    .catch(error => error.response);
+    .catch((error) => error.response);
 };
 
-export const deletePrescription = id => dispatch => {
+export const deletePrescription = (id) => (dispatch) => {
   const token = Cookie.get("token");
 
-  axios.delete(
-    `https://drug-prescription-app.herokuapp.com/api/v1/prescription/${id}`,
-    {
-      headers: {
-        Authorization: token
+  axios
+    .delete(
+      `https://drug-prescription-app.herokuapp.com/api/v1/prescription/${id}`,
+      {
+        headers: {
+          Authorization: token,
+        },
       }
-    }
-  )
+    )
     .then(({ data }) => {
       dispatch(deletePrescriptionSuccess(data.prescription));
     })
-    .catch(error => error.response);
+    .catch((error) => error.response);
 };

@@ -21,6 +21,11 @@ export const addUsageFormulaSuccess = payload => ({
   payload
 });
 
+export const editUsageFormula = payload => ({
+  type: types.EDIT_USAGE_FORMULA_SUCCESS,
+  payload
+});
+
 export const addUsageFormulaError = payload => ({
   type: types.ADD_USAGE_FORMULA_ERROR,
   payload
@@ -65,6 +70,26 @@ export const getFormula = id => dispatch => {
     .catch(error => {
       dispatch(getUsageFormulaError(error));
 
+      console.log(error.response);
+    });
+  dispatch(getUsageFormulaRequest(false));
+};
+
+export const editFormula = id => dispatch => {
+  dispatch(getUsageFormulaRequest(true));
+
+  const token = Cookie.get("token");
+
+  axios
+    .put(`https://drug-prescription-app.herokuapp.com/api/v1/formula/${id}`, {
+      headers: {
+        Authorization: token
+      }
+    })
+    .then(({ data }) => {
+      dispatch(editUsageFormula(data));
+    })
+    .catch(error => {
       console.log(error.response);
     });
   dispatch(getUsageFormulaRequest(false));

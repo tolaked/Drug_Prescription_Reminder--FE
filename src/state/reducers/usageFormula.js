@@ -29,6 +29,13 @@ export default function reducer(state = initialState, action) {
         formula: {},
         error: null
       };
+      case types.EDIT_USAGE_FORMULA_SUCCESS:
+      return {
+        ...state,
+        requesting: false,
+        formula: action.payload,
+        error: null
+      };
     default:
       return state;
   }

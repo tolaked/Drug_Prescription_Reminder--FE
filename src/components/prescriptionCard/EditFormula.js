@@ -1,35 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addFormula } from "../../state/actions/usageFormula";
 import { InputDiv } from "../auth/Login";
 import Input from "../../reusables/Input";
 import Label from "../../reusables/Label";
 import { StyledForm } from "../prescriptions/Modal";
-import "../prescriptionCard/styles.css";
 
-const UsageFormulaForm =({ handleHide, show, children})=> {
-  const initialState = {
+const EditFormula = ({ handleHide, children, edit, form }) => {
+  const initialForm = {
     frequency: "",
     dose: "",
     number_of_times: "",
     duration: "",
-    before_after_meal: ""
+    before_after_meal: "",
   };
-  const [form, setForm] = useState(initialState);
+  const [forms, setForm] = useState(initialForm);
+  
+  useEffect(() => {
+    setForm(form);
+  }, [form]);
 
-  const showHideClassName = show ? "modal display-usage" : "modal hide-display";
+  const showHideClassName = edit ? "modal display-usage" : "modal hide-display";
 
   const prescription_id =
     useSelector(state => state.prescription.prescription._id) || "";
 
   const dispatch = useDispatch();
 
-  const handleChange = e => {
-    const { name, value } = e.target;
+  const handleChange = (e) => {
     e.preventDefault();
-    setForm(prevState => ({
+    const { name, value } = e.target;
+    setForm((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
   const handleSubmit = (e, id) => {
@@ -42,12 +45,12 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
       <section className="formula-modal">
         {children}
 
-        <StyledForm onSubmit={e => handleSubmit(e, prescription_id)}>
+        <StyledForm onSubmit={(e) => handleSubmit(e, prescription_id)}>
           <div className="close" onClick={handleHide}>
             x
           </div>
           <h4 style={{ marginBottom: "25px", marginTop: "5px" }}>
-         Add usage formula
+            Edit usage formula
           </h4>
           <InputDiv>
             <Label medium htmlFor="frequency">
@@ -58,7 +61,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               type="text"
               name="frequency"
               id="frequency"
-              value={form.frequency}
+              value={forms.frequency}
               onChange={handleChange}
             />
           </InputDiv>
@@ -71,7 +74,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               id="dose"
               type="number"
               name="dose"
-              value={form.dose}
+              value={forms.dose}
               onChange={handleChange}
             />
           </InputDiv>
@@ -84,7 +87,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               type="number"
               id="number_of_times"
               name="number_of_times"
-              value={form.number_of_times}
+              value={forms.number_of_times}
               onChange={handleChange}
             />
           </InputDiv>
@@ -97,7 +100,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               type="text"
               id="duration"
               name="duration"
-              value={form.duration}
+              value={forms.duration}
               onChange={handleChange}
             />
           </InputDiv>
@@ -110,17 +113,17 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               type="text"
               id="meal"
               name="before_after_meal"
-              value={form.before_after_meal}
+              value={forms.before_after_meal}
               onChange={handleChange}
             />
           </InputDiv>
           <button type="primary" className="btn add-formula-btn">
-            Add formula
+            Submit
           </button>
         </StyledForm>
       </section>
     </div>
   );
-}
+};
 
-export default UsageFormulaForm;
+export default EditFormula;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Modal from "./Modal";
+import ModalCard from "./Modal";
 import "../prescriptionCard/styles.css";
 const LeftAside = () => {
   const [show, setShow] = useState(false);
@@ -16,7 +16,7 @@ const LeftAside = () => {
   return (
     <div className="top-content">
       <div className="compose__message_wrapper">
-        <Modal handleHide={handleHide} show={show} />
+        <ModalCard handleHide={handleHide} show={show} />
         <button className="compose__message_btn" onClick={handleShow}>
           CREATE
         </button>

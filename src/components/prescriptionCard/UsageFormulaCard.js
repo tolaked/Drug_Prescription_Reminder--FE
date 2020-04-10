@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "../prescriptionCard/styles.css";
 
-function UsageFormulaCard({ handleHide, usageCard, children }) {
+function UsageFormulaCard({ handleHide, usageCard, children, handleEditModal, setEdit }) {
   const showHideClassName = usageCard
     ? "modal display-formula"
     : "modal hide-formula";
@@ -24,7 +24,7 @@ function UsageFormulaCard({ handleHide, usageCard, children }) {
               <h4>frequency:{formula.frequency}</h4>
               <h4>Dose:{formula.dose}</h4>
               <h4>To be taken:{formula.number_of_times} times</h4>
-              <button className="btn">Edit formula</button>
+              <button className="btn" onClick={e => handleEditModal(e, setEdit, formula._id)}>Edit formula</button>
             </div>
            : 
             <p>No usage formula for this prescription</p>

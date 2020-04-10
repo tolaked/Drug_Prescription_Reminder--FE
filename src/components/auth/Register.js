@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { connect } from "react-redux";
@@ -47,6 +48,9 @@ const schema = {
 
 const Register = props => {
   const { doSignUp } = props;
+  const dispatch = useDispatch()
+  const error =     useSelector(state => state.user.error) || '';
+  const userData =     useSelector(state => state.user.user) || {};
 
   const [formState, setFormState] = useState({
     isValid: false,
@@ -99,7 +103,7 @@ const Register = props => {
       loading: true
     });
 
-    doSignUp({
+    dispatch(doSignUp)({
       ...formState.values,
       age: parseInt(formState.values.age, 10)
     }).then(res => {
@@ -245,12 +249,12 @@ const Register = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  userData: state.user.user,
-  error: state.user.error
-});
+// const mapStateToProps = state => ({
+//   userData: state.user.user,
+//   error: state.user.error
+// });
 
-export default connect(mapStateToProps, { doSignUp })(Register);
+export default Register;
 
 const BorderDiv = styled.div``;
 const StyledForm = styled.form`
