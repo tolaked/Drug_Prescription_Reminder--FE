@@ -63,9 +63,6 @@ const AllPrescriptions = () => {
     dispatch(deletePrescription(id));
   };
 
- 
-  ;
-
   const indexOfLastPrescription = currentPage * prescriptionPerPage
   const indexOfFirstPrescription = indexOfLastPrescription - prescriptionPerPage
   const currentPrescriptions = prescriptions.slice(indexOfFirstPrescription, indexOfLastPrescription)

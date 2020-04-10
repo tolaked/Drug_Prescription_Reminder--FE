@@ -15,7 +15,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
     duration: "",
     before_after_meal: ""
   };
-  const [form, setForm] = useState(initialState);
+  const [forminput, setForminput] = useState(initialState);
 
   const showHideClassName = show ? "modal display-usage" : "modal hide-display";
 
@@ -27,14 +27,15 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
   const handleChange = e => {
     const { name, value } = e.target;
     e.preventDefault();
-    setForm(prevState => ({
+    setForminput(prevState => ({
       ...prevState,
       [name]: value
     }));
   };
   const handleSubmit = (e, id) => {
     e.preventDefault();
-    dispatch(addFormula(form, id));
+    dispatch(addFormula(forminput, id));
+    setForminput(initialState)
     handleHide(e)
   };
 
@@ -59,7 +60,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               type="text"
               name="frequency"
               id="frequency"
-              value={form.frequency}
+              value={forminput.frequency}
               onChange={handleChange}
             />
           </InputDiv>
@@ -72,7 +73,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               id="dose"
               type="number"
               name="dose"
-              value={form.dose}
+              value={forminput.dose}
               onChange={handleChange}
             />
           </InputDiv>
@@ -85,7 +86,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               type="number"
               id="number_of_times"
               name="number_of_times"
-              value={form.number_of_times}
+              value={forminput.number_of_times}
               onChange={handleChange}
             />
           </InputDiv>
@@ -98,7 +99,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               type="text"
               id="duration"
               name="duration"
-              value={form.duration}
+              value={forminput.duration}
               onChange={handleChange}
             />
           </InputDiv>
@@ -111,7 +112,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
               type="text"
               id="meal"
               name="before_after_meal"
-              value={form.before_after_meal}
+              value={forminput.before_after_meal}
               onChange={handleChange}
             />
           </InputDiv>
