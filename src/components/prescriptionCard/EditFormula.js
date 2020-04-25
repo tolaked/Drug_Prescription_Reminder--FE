@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
+import {ToastContainer,toast} from 'react-toastify';
 import { useSelector, useDispatch } from "react-redux";
-import { addFormula } from "../../state/actions/usageFormula";
+import { editFormula } from "../../state/actions/usageFormula";
 import { InputDiv } from "../auth/Login";
 import Input from "../../reusables/Input";
 import Label from "../../reusables/Label";
@@ -35,9 +36,18 @@ const EditFormula = ({ handleHide, children, edit, form }) => {
       [name]: value,
     }));
   };
-  const handleSubmit = (e, id) => {
+
+  const handleSubmit = (e, id,formula) => {
     e.preventDefault();
-    dispatch(addFormula(form, id));
+    dispatch(editFormula(id, formula));
+    toast.success("Formula added successfully !",{
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+    });
   };
 
   return (
@@ -45,10 +55,20 @@ const EditFormula = ({ handleHide, children, edit, form }) => {
       <section className="formula-modal">
         {children}
 
-        <StyledForm onSubmit={(e) => handleSubmit(e, prescription_id)}>
+        <StyledForm onSubmit={(e) => handleSubmit(e, forms._id,forms)}>
           <div className="close" onClick={handleHide}>
             x
           </div>
+          <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnVisibilityChange={false}
+          draggable
+          pauseOnHover/>
           <h4 style={{ marginBottom: "25px", marginTop: "5px" }}>
             Edit usage formula
           </h4>

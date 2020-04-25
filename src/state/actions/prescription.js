@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 import Cookie from "js-cookie";
 import history from "../../history";
 import * as types from "../actionTypes/prescriptions";
@@ -33,10 +34,6 @@ export const addPrescriptionSuccess = (payload) => ({
   payload,
 });
 
-const setPrescriptons = (prescriptions) => ({
-  type: types.SET_PRESCRIPTIONS,
-  payload: prescriptions,
-});
 
 export const addPrescription = (prescription) => (dispatch) => {
   const token = Cookie.get("token");
@@ -53,6 +50,9 @@ export const addPrescription = (prescription) => (dispatch) => {
     )
     .then(({ data }) => {
       dispatch(addPrescriptionSuccess(data));
+      toast.success("Prescription added successfully !", {
+        position: toast.POSITION.TOP_CENTER
+      });
       history.push("/add");
     })
     .catch((error) => {

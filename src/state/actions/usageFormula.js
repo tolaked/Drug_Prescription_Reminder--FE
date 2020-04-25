@@ -1,4 +1,5 @@
 import axios from "axios";
+import { toast } from 'react-toastify';
 import Cookie from "js-cookie";
 import history from '../../history';
 import * as types from "../actionTypes/usageFormula";
@@ -75,19 +76,28 @@ export const getFormula = id => dispatch => {
   dispatch(getUsageFormulaRequest(false));
 };
 
-export const editFormula = id => dispatch => {
+export const editFormula = (id,formula) => dispatch => {
   dispatch(getUsageFormulaRequest(true));
 
   const token = Cookie.get("token");
 
   axios
-    .put(`https://drug-prescription-app.herokuapp.com/api/v1/formula/${id}`, {
+    .put(`https://drug-prescription-app.herokuapp.com/api/v1/formula/${id}`,formula, {
       headers: {
         Authorization: token
       }
     })
     .then(({ data }) => {
+      // toast.success("Formula added successfully !",{
+      //   position: "top-center",
+      //   autoClose: 1000,
+      //   hideProgressBar: false,
+      //   closeOnClick: false,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      // });
       dispatch(editUsageFormula(data));
+      
     })
     .catch(error => {
       console.log(error.response);
