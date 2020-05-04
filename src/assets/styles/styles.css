@@ -108,6 +108,25 @@ h3{
 }
 
 .allcards{
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 80px)
 }
 
+/* MOBILE RESPONSIVENESS */
+@media only screen and (max-width: 600px) {
+    .left-side {
+      display: none;
+    }
+    .header{
+        width: 550px;
+    }
+    .support{
+        display:none
+    }
+    .navigation-bar{
+        margin-left:100px;
+        display: flex;
+    }
+    .top-content{
+        width:45%
+    }
+  }

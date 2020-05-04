@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { connect } from "react-redux";
 import { Button as AntButton } from "antd";
 import validate from "validate.js";
 
 import Homepage from "../hompage/Homepage";
-import { doSignUp } from "../../state/actions/signup";
 import Input from "../../reusables/Input";
 import Label from "../../reusables/Label";
 import "../../assets/styles/styles.css";
@@ -263,7 +261,6 @@ const StyledForm = styled.form`
   background: #ffffff;
   border: 1px solid #ddf8fc;
   box-sizing: border-box;
-  /* padding-top: 0.2rem; */
   padding-bottom: 0.3rem;
   border-radius: 5px;
   box-align: center;
@@ -274,6 +271,9 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media only screen and (max-width: 600px) {
+      left:68%;
+  }
 `;
 
 export const InputDiv = styled.div`
@@ -281,4 +281,5 @@ export const InputDiv = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
 `;

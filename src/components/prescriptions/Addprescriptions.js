@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "../../reusables/Header.js";
-import LeftAside from "./LeftAside";
+import LeftSide from "./LeftSide";
 import AllCards from "../prescriptionCard/AllCards";
 
 const Addprescriptions = () => {
@@ -9,7 +9,7 @@ const Addprescriptions = () => {
     <>
       <Header />
       <StyledContainer>
-        <LeftAside />
+        <LeftSide />
         <AllCards />
       </StyledContainer>
     </>

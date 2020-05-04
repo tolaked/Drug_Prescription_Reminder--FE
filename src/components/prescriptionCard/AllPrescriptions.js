@@ -71,7 +71,7 @@ const AllPrescriptions = () => {
     setCurrentPage(pageNumber)
   }
   return (
-    <div>
+    <div >
       <UsageFormulaForm
         handleHide={e => handleHideModal(e, setShow)}
         show={shows}

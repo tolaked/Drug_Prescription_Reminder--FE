@@ -36,7 +36,7 @@ const Header = () => {
           Prescriptions
         </NavLink>
         <NavLink
-          className="navlink"
+          className="navlink support"
           to="/prescriptions"
           activeClassName="active"
         >
