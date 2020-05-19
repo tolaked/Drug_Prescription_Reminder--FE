@@ -103,7 +103,7 @@ const Login = () => {
               value={formState.values.email || ""}
             />
             {hasError("email") ? (
-              <p color="hsla(359,98%,68%,1)">{formState.errors.email[0]}</p>
+              <p className="error">{formState.errors.email[0]}</p>
             ) : null}
           </InputDiv>
           <InputDiv>
@@ -118,7 +118,7 @@ const Login = () => {
             />
 
             {hasError("password") ? (
-              <p className="" color="hsla(359,98%,68%,1)">
+              <p className="error">
                 {formState.errors.password[0]}
               </p>
             ) : null}
@@ -160,7 +160,7 @@ export default Login;
 const BorderDiv = styled.div``;
 export const StyledForm = styled.form`
   width: 400px;
-  height: 350px;
+  height: 380px;
   background: #ffffff;
   border: 1px solid #ddf8fc;
   box-sizing: border-box;
