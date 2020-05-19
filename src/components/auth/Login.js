@@ -137,7 +137,6 @@ const Login = () => {
               fontSize: "16px",
               color: "white",
               borderRadius: "0.5rem",
-              // cursor: "pointer",
             }}
           >
             {loggingIn ? "Logging in..." : "Log in"}

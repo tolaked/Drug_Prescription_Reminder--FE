@@ -113,7 +113,7 @@ const Register = props => {
       <Homepage alt />
       <BorderDiv>
         <StyledForm>
-          <h2>Create an account</h2>
+          <h2 className="signup-header">Create an account</h2>
           <InputDiv>
             <Label medium>First Name</Label>
             <Input
@@ -124,13 +124,7 @@ const Register = props => {
               value={formState.values.firstName || ""}
             />
             {hasError("firstName") ? (
-              <p
-                style={{
-                  color: "red",
-                  marginTop: "2px",
-                  marginBottom: "-10px"
-                }}
-              >
+              <p className="error">
                 first Name must be at least 3 characters
               </p>
             ) : null}
@@ -145,13 +139,7 @@ const Register = props => {
               value={formState.values.lastName || ""}
             />
             {hasError("lastName") ? (
-              <p
-                style={{
-                  color: "red",
-                  marginTop: "2px",
-                  marginBottom: "-10px"
-                }}
-              >
+              <p className="error" >
                 Last Name must be at least 3 characters
               </p>
             ) : null}
@@ -166,13 +154,7 @@ const Register = props => {
               value={formState.values.email || ""}
             />
             {hasError("email") ? (
-              <p
-                style={{
-                  color: "red",
-                  marginTop: "2px",
-                  marginBottom: "-10px"
-                }}
-              >
+              <p className="error">
                 {formState.errors.email[0]}
               </p>
             ) : null}
@@ -187,13 +169,7 @@ const Register = props => {
               value={formState.values.age || ""}
             />
             {hasError("age") ? (
-              <p
-                style={{
-                  color: "red",
-                  marginTop: "2px",
-                  marginBottom: "-10px"
-                }}
-              >
+              <p className="error">
                 {formState.errors.age[0]}
               </p>
             ) : null}
@@ -208,13 +184,7 @@ const Register = props => {
               value={formState.values.password || ""}
             />
             {hasError("password") ? (
-              <p
-                style={{
-                  color: "red",
-                  marginTop: "2px",
-                  marginBottom: "-10px"
-                }}
-              >
+              <p className="error" >
                 password must be of 6 characters
               </p>
             ) : null}
@@ -222,7 +192,7 @@ const Register = props => {
           <AntButton
             type="primary"
             disabled={!formState.isValid}
-            // loading={!!(error)}
+            className = {!formState.isValid ? 'disabled' : null}
             onClick={handleSubmit}
             style={{
               backgroundColor: "#4FB4C2",

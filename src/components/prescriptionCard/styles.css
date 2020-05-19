@@ -174,7 +174,12 @@ border: 1px solid #ddd;
 .error{
   color: red;
   font-size: 12px;
-  margin-bottom: -20px
+  margin-bottom: -15px
+}
+
+.signup-header{
+  margin-top:10px;
+  margin-bottom:8px
 }
 
 @media only screen and (max-width: 600px) {
