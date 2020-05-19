@@ -1,7 +1,4 @@
 import React from "react";
-import {logOutSuccess} from '../state/actions/signin'
-import Cookie from "js-cookie";
-import { useSelector, useDispatch } from "react-redux";
 import { withRouter, NavLink } from "react-router-dom";
 
 import Logo from "../assets/images/logo.jpeg";
@@ -10,15 +7,13 @@ import "../assets/styles/styles.css";
 
 const Header = () => {
   
-  const dispatch = useDispatch()
-  const loggedOut = useSelector(state=>state.user.loggedOut);
+  const loggedOut = localStorage.getItem('token');
   
   const logout = () => {
-    const cookie = Cookie.get('token');
-    if(cookie){
-      Cookie.remove('token');
+    const token = localStorage.getItem('token');
+    if(token){
+      localStorage.removeItem('token');
       history.push('/')
-      dispatch(logOutSuccess(true))
     }
   };
 
@@ -36,13 +31,13 @@ const Header = () => {
           Prescriptions
         </NavLink>
         <NavLink
-          className="navlink support"
-          to="/prescriptions"
+          className="navlink"
+          to=""
           activeClassName="active"
         >
           support
         </NavLink>
-        {(!loggedOut) &&
+        {(loggedOut) &&
         <NavLink onClick={logout} className="navlink" to="/" activeClassName="active">
           Logout
         </NavLink>

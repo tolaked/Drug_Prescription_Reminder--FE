@@ -70,7 +70,10 @@ h3{
     align-items: center;
   }
 
-
+  .disabled{
+    cursor: not-allowed;
+    color:yellow
+  }
 .compose {
   padding: 20px;
 }

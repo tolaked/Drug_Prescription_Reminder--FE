@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookie from "js-cookie";
 import history from '../../history';
 import * as types from "../actionTypes/users";
 
@@ -18,10 +17,10 @@ const signInError = payload => ({
   payload
 });
 
-export const logOutSuccess = payload => ({
-  type: types.LOGOUT_SUCCESS,
-  payload
-});
+// export const logOutSuccess = payload => ({
+//   type: types.LOGOUT_SUCCESS,
+//   payload
+// });
 
 export const doSignIn = user => dispatch => {
   dispatch(signInRequest(true));
@@ -32,7 +31,7 @@ export const doSignIn = user => dispatch => {
       user
     )
     .then(({ data }) => {
-      Cookie.set("token", data.user.token);
+      localStorage.setItem("token", data.user.token);
 
       dispatch(signInSuccess(data.user.email));
       history.push("/add");

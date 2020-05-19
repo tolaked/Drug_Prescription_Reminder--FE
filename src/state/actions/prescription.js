@@ -36,7 +36,7 @@ export const addPrescriptionSuccess = (payload) => ({
 
 
 export const addPrescription = (prescription) => (dispatch) => {
-  const token = Cookie.get("token");
+  const token = localStorage.getItem("token");
 
   axios
     .post(
@@ -63,7 +63,7 @@ export const addPrescription = (prescription) => (dispatch) => {
 export const getPrescriptions = () => (dispatch) => {
   dispatch(getPrescriptionRequest(true));
 
-  const token = Cookie.get("token");
+  const token = localStorage.getItem("token");
 
   axios
     .get("https://drug-prescription-app.herokuapp.com/api/v1/prescription", {
@@ -80,7 +80,7 @@ export const getPrescriptions = () => (dispatch) => {
 export const fetchSinglePrescription = (id) => (dispatch) => {
   dispatch(getSinglePresriptionSuccess(true));
 
-  const token = Cookie.get("token");
+  const token = localStorage.getItem("token");
 
   axios
     .get(
@@ -98,7 +98,7 @@ export const fetchSinglePrescription = (id) => (dispatch) => {
 };
 
 export const deletePrescription = (id) => (dispatch) => {
-  const token = Cookie.get("token");
+  const token = localStorage.getItem("token");
 
   axios
     .delete(

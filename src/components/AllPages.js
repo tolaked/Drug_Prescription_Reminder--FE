@@ -10,7 +10,7 @@ import Addprescription from "../components/prescriptions/Addprescriptions";
 function AllPages() {
 
   const withAuthCheck = (Component, props) => {
-    if (Cookie.get("token")) {
+    if (localStorage.getItem("token")) {
       return <Component {...props} />;
     }
     return <Redirect to="/" />;

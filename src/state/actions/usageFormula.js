@@ -33,7 +33,7 @@ export const addUsageFormulaError = payload => ({
 });
 
 export const addFormula = (formula, id) => dispatch => {
-  const token = Cookie.get("token");
+  const token = localStorage.getItem("token");
 
   axios
     .post(
@@ -57,7 +57,7 @@ export const addFormula = (formula, id) => dispatch => {
 export const getFormula = id => dispatch => {
   dispatch(getUsageFormulaRequest(true));
 
-  const token = Cookie.get("token");
+  const token = localStorage.getItem("token");
 
   axios
     .get(`https://drug-prescription-app.herokuapp.com/api/v1/formula/${id}`, {
@@ -79,7 +79,7 @@ export const getFormula = id => dispatch => {
 export const editFormula = (id,formula) => dispatch => {
   dispatch(getUsageFormulaRequest(true));
 
-  const token = Cookie.get("token");
+  const token = localStorage.getItem("token");
 
   axios
     .put(`https://drug-prescription-app.herokuapp.com/api/v1/formula/${id}`,formula, {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button as AntButton } from "antd";
 import validate from "validate.js";
 
@@ -16,79 +16,79 @@ const schema = {
     presence: { allowEmpty: false, message: "is required" },
     length: {
       minimum: 4,
-      maximum: 64
-    }
+      maximum: 64,
+    },
   },
   password: {
     presence: { allowEmpty: false, message: "is required" },
     length: {
       minimum: 6,
-      maximum: 128
-    }
-  }
+      maximum: 128,
+    },
+  },
 };
 
 const Login = () => {
   const dispatch = useDispatch();
+  const loggingIn = useSelector((state) => state.user.requesting) || false;
 
   const [formState, setFormState] = useState({
     isValid: false,
     values: {},
     touched: {},
-    errors: {}
+    errors: {},
   });
   const [antButtonState, setAntButtonState] = useState({
     loading: false,
-    iconLoading: false
+    iconLoading: false,
   });
 
   useEffect(() => {
     const errors = validate(formState.values, schema);
 
-    setFormState(formState => ({
+    setFormState((formState) => ({
       ...formState,
       isValid: !errors,
-      errors: errors || {}
+      errors: errors || {},
     }));
   }, [formState.values]);
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     event.persist();
 
-    setFormState(formState => ({
+    setFormState((formState) => ({
       ...formState,
       values: {
         ...formState.values,
         [event.target.name]:
-          event.target.type === "checkbox"
-            ? event.target.checked
-            : event.target.value
+          // event.target.type === "checkbox"
+          //   ? event.target.checked
+          event.target.value,
       },
       touched: {
         ...formState.touched,
-        [event.target.name]: true
-      }
+        [event.target.name]: true,
+      },
     }));
   };
 
-  const hasError = field =>
+  const hasError = (field) =>
     !!(formState.touched[field] && formState.errors[field]);
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
 
     setAntButtonState({
       iconLoading: antButtonState.iconLoading,
-      loading: true
+      loading: true,
     });
 
-    dispatch(doSignIn(formState.values)
-    );
-   
+      dispatch(doSignIn(formState.values))
+    
   };
   return (
     <div>
-      <Homepage alt/>
+      <Homepage alt />
       <BorderDiv>
         <StyledForm>
           <h2>Login to your account</h2>
@@ -126,8 +126,8 @@ const Login = () => {
           <AntButton
             type="primary"
             disabled={!formState.isValid}
-            // loading={!!(error)}
-            onClick={async event => {
+            className = {!formState.isValid ? 'disabled' : null}
+            onClick={async (event) => {
               handleSubmit(event, formState.values);
             }}
             style={{
@@ -137,10 +137,10 @@ const Login = () => {
               fontSize: "16px",
               color: "white",
               borderRadius: "0.5rem",
-              cursor: "pointer"
+              // cursor: "pointer",
             }}
           >
-            Login
+            {loggingIn ? "Logging in..." : "Log in"}
           </AntButton>
           <p>
             Don't have an account? signup
@@ -154,7 +154,6 @@ const Login = () => {
     </div>
   );
 };
-
 
 export default Login;
 
