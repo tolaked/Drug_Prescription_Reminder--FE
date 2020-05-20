@@ -33,12 +33,17 @@ h3{
     display: flex;
     align-items: center;
     margin-left:80px
-
 }
+
+.hamburger{
+    display: none
+}
+
 .navigation-bar{
     margin-right:200px;
     display: flex;
 }
+
 
 .navigation-bar .navlink{
     margin-right: 40px;
@@ -72,8 +77,8 @@ h3{
 
   .disabled{
     cursor: not-allowed;
-    color:yellow
   }
+
 .compose {
   padding: 20px;
 }
@@ -114,22 +119,50 @@ h3{
     min-height: calc(100vh - 80px)
 }
 
+.hide{
+    display:none
+}
 /* MOBILE RESPONSIVENESS */
 @media only screen and (max-width: 600px) {
     .left-side {
       display: none;
     }
     .header{
-        width: 550px;
+        width: 720px;
+        height: 150px;
     }
     .support{
         display:none
     }
     .navigation-bar{
-        margin-left:100px;
-        display: flex;
+        display: none;
     }
     .top-content{
         width:45%
+    }
+    .show-menu{
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+        margin-top: 15px;
+        /* padding-bottom: 30px */
+        
+    }
+    .show-menu .navlink{
+        color: snow;
+        padding-bottom: 10px;
+        font-size: 18px;
+    }
+    .hamburger{
+        display: flex;
+        margin-right: 60px;
+        color: white;
+        font-size: 28px;
+    }
+    .mobile-menu{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-right: 30px;
     }
   }

@@ -177,6 +177,11 @@ export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media only screen and (max-width: 600px) {
+      margin-left: 60px;
+      margin-top: 40px
+    
+    }
 `;
 
 export const InputDiv = styled.div`
