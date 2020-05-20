@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookie from "js-cookie";
 import history from '../../history'
 import * as types from "../actionTypes/users";
 
@@ -26,15 +25,13 @@ export const doSignUp = user => dispatch => {
       user
     )
     .then(({ data }) => {
-      Cookie.set("token", data.user.token);
-
+      localStorage.setItem("token", data.user.token);
       dispatch(signUpSuccess(data.user));
       history.push("/add");
       return data;
     })
     .catch(error => {
-      dispatch(signUpError(error.response));
-      dispatch(signUpRequest(false));
+      dispatch(signUpError('email already exist'));
       return error.response;
     });
   

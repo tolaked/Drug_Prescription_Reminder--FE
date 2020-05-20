@@ -177,6 +177,13 @@ border: 1px solid #ddd;
   margin-bottom: -15px
 }
 
+.login-error{
+  color:red;
+  font-size:13px;
+  margin-bottom:5px;
+  margin-top:-10px
+}
+
 .signup-header{
   margin-top:10px;
   margin-bottom:8px

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Button as AntButton } from "antd";
 import validate from "validate.js";
 
+import { doSignUp } from "../../state/actions/signup";
 import Homepage from "../hompage/Homepage";
 import Input from "../../reusables/Input";
 import Label from "../../reusables/Label";
@@ -14,15 +15,15 @@ const schema = {
   firstName: {
     presence: { allowEmpty: false, message: "is required" },
     length: {
-      minimum: 4,
-      maximum: 64
+      minimum: 2,
+      maximum: 50
     }
   },
   lastName: {
     presence: { allowEmpty: false, message: "is required" },
     length: {
-      minimum: 6,
-      maximum: 128
+      minimum: 2,
+      maximum: 50
     }
   },
   email: {
@@ -44,11 +45,10 @@ const schema = {
   }
 };
 
-const Register = props => {
-  const { doSignUp } = props;
+const Register = () => {
   const dispatch = useDispatch()
-  const error =     useSelector(state => state.user.error) || '';
-  const userData =     useSelector(state => state.user.user) || {};
+  const signupError =     useSelector(state => state.user.signupError) || '';
+  const creating = useSelector((state) => state.user.requesting) || false;
 
   const [formState, setFormState] = useState({
     isValid: false,
@@ -79,9 +79,9 @@ const Register = props => {
       values: {
         ...formState.values,
         [event.target.name]:
-          event.target.type === "checkbox"
-            ? event.target.checked
-            : event.target.value
+          // event.target.type === "checkbox"
+          //   ? event.target.checked
+             event.target.value
       },
       touched: {
         ...formState.touched,
@@ -101,19 +101,21 @@ const Register = props => {
       loading: true
     });
 
-    dispatch(doSignUp)({
+    dispatch(doSignUp({
       ...formState.values,
       age: parseInt(formState.values.age, 10)
-    }).then(res => {
-      props.history.push("/add");
-    });
+    }))
   };
   return (
     <div>
       <Homepage alt />
       <BorderDiv>
+        
         <StyledForm>
           <h2 className="signup-header">Create an account</h2>
+          {
+          (signupError.length > 0) && <p className='login-error'>{signupError}</p>
+        }
           <InputDiv>
             <Label medium>First Name</Label>
             <Input
@@ -192,7 +194,7 @@ const Register = props => {
           <AntButton
             type="primary"
             disabled={!formState.isValid}
-            className = {!formState.isValid ? 'disabled' : null}
+            // className = {!formState.isValid ? 'disabled' : null}
             onClick={handleSubmit}
             style={{
               backgroundColor: "#4FB4C2",
@@ -203,7 +205,7 @@ const Register = props => {
               borderRadius: "0.5rem"
             }}
           >
-            signup
+            {creating ? "Creating..." : "Sign Up"}
           </AntButton>
           <p>
             Already have an account? Login{" "}
@@ -217,10 +219,6 @@ const Register = props => {
   );
 };
 
-// const mapStateToProps = state => ({
-//   userData: state.user.user,
-//   error: state.user.error
-// });
 
 export default Register;
 

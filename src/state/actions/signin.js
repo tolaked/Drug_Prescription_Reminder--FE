@@ -17,11 +17,6 @@ const signInError = payload => ({
   payload
 });
 
-// export const logOutSuccess = payload => ({
-//   type: types.LOGOUT_SUCCESS,
-//   payload
-// });
-
 export const doSignIn = user => dispatch => {
   dispatch(signInRequest(true));
 
@@ -38,8 +33,8 @@ export const doSignIn = user => dispatch => {
       return data;
     })
     .catch(error => {
-      dispatch(signInError(error));
-      return error.response;
+      dispatch(signInError('invalid email/password'));
+      console.log(error.response);
     });
 };
 

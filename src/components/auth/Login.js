@@ -31,6 +31,8 @@ const schema = {
 const Login = () => {
   const dispatch = useDispatch();
   const loggingIn = useSelector((state) => state.user.requesting) || false;
+  const loginError = useSelector((state) => state.user.loginError) || ''
+  
 
   const [formState, setFormState] = useState({
     isValid: false,
@@ -92,6 +94,7 @@ const Login = () => {
       <BorderDiv>
         <StyledForm>
           <h2>Login to your account</h2>
+  { (loginError.length > 0) && <p className='login-error'>{loginError}</p>}
           <InputDiv>
             <Label medium>Email</Label>
             <Input
