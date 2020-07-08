@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ModalCard from "./Modal";
 import "../prescriptionCard/styles.css";
+
 const LeftAside = () => {
   const [show, setShow] = useState(false);
 

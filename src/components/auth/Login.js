@@ -178,8 +178,9 @@ export const StyledForm = styled.form`
   flex-direction: column;
   align-items: center;
   @media only screen and (max-width: 600px) {
-      margin-left: 60px;
-      margin-top: 40px
+      /* margin-left: 60px;*/
+      margin:0 auto;
+      margin-top: 100px ;
     
     }
 `;

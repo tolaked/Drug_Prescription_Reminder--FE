@@ -1,3 +1,10 @@
+/* RESET */
+
+
+
+/*  */
+
+
 img{
     width:50px;
     height:50px;
@@ -40,7 +47,7 @@ h3{
 }
 
 .navigation-bar{
-    margin-right:200px;
+    margin-right:-360px;
     display: flex;
 }
 
@@ -128,8 +135,8 @@ h3{
       display: none;
     }
     .header{
-        width: 720px;
-        height: 150px;
+        width: 500px;
+        height: 170px;
     }
     .support{
         display:none
@@ -144,14 +151,17 @@ h3{
         display: flex;
         flex-direction: column;
         margin-right: 10px;
-        margin-top: 15px;
+         background-color: #f1f1f1;
+  min-width: 98px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
         /* padding-bottom: 30px */
         
     }
     .show-menu .navlink{
-        color: snow;
-        padding-bottom: 10px;
+        color: black;
+        padding-bottom: 5px;
         font-size: 18px;
+        padding: 12px 16px;
     }
     .hamburger{
         display: flex;
@@ -164,5 +174,9 @@ h3{
         flex-direction: column;
         align-items: center;
         margin-right: 30px;
+        /* margin-top: 20px; */
+    }
+    .add-padd{
+        margin-top:50px
     }
   }

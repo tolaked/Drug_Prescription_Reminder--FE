@@ -1,7 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Route } from "react-router-dom";
-import Cookie from "js-cookie";
 
 import Register from "./auth/Register";
 import Login from "./auth/Login";

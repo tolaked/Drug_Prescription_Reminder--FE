@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addFormula } from "../../state/actions/usageFormula";
 import { InputDiv } from "../auth/Login";
+import {
+  Dialog,
+
+} from "@material-ui/core";
 import Input from "../../reusables/Input";
 import Label from "../../reusables/Label";
 import { StyledForm } from "../prescriptions/Modal";
@@ -40,7 +44,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
   };
 
   return (
-    <div className={showHideClassName}>
+    <Dialog open={show} className={showHideClassName} onClose={handleHide}>
       <section className="formula-modal">
         {children}
 
@@ -121,7 +125,7 @@ const UsageFormulaForm =({ handleHide, show, children})=> {
           </button>
         </StyledForm>
       </section>
-    </div>
+    </Dialog>
   );
 }
 

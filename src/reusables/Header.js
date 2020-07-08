@@ -52,7 +52,7 @@ const Header = () => {
         )}
         
       </div>
-      <div className = "mobile-menu">
+      <div className ={ "mobile-menu " + (open ? "add-padd" : null) }>
       <div className='hamburger'>
         { !open ?
           <FontAwesomeIcon icon={faBars} onClick={handleSwitch}/>
@@ -69,6 +69,16 @@ const Header = () => {
         <NavLink className="navlink" to="" activeClassName="active">
           support
         </NavLink>
+        {loggedOut && (
+          <NavLink
+            onClick={logout}
+            className="navlink"
+            to="/"
+            activeClassName="active"
+          >
+            Logout
+          </NavLink>
+        )}
         </div>
         </div>
     </div>

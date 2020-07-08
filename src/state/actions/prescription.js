@@ -33,6 +33,15 @@ export const addPrescriptionSuccess = (payload) => ({
   type: types.ADD_PRESCRIPTION_SUCCESS,
   payload,
 });
+export const addPrescriptionError = (payload) => ({
+  type: types.ADD_PRESCRIPTION_ERROR,
+  payload,
+});
+
+export const getPrescriptionsError = (payload) => ({
+  type: types.GET_PRESCRIPTIONS_ERROR,
+  payload,
+});
 
 
 export const addPrescription = (prescription) => (dispatch) => {
@@ -50,13 +59,11 @@ export const addPrescription = (prescription) => (dispatch) => {
     )
     .then(({ data }) => {
       dispatch(addPrescriptionSuccess(data));
-      toast.success("Prescription added successfully !", {
-        position: toast.POSITION.TOP_CENTER
-      });
       history.push("/add");
     })
     .catch((error) => {
-      return error;
+      dispatch(addPrescriptionError(true))
+      console.log(error);
     });
 };
 
@@ -74,7 +81,10 @@ export const getPrescriptions = () => (dispatch) => {
     .then(({ data }) => {
       dispatch(getPrescriptionSuccess(data.prescription));
     })
-    .catch((error) => error.response);
+    .catch((error) => {
+      dispatch(getPrescriptionsError(true))
+      return error.response
+    });
 };
 
 export const fetchSinglePrescription = (id) => (dispatch) => {

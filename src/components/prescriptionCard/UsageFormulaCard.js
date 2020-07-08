@@ -1,6 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "../prescriptionCard/styles.css";
+import {
+  Dialog,
+
+} from "@material-ui/core";
 
 function UsageFormulaCard({ handleHide, usageCard, children, handleEditModal, setEdit }) {
   const showHideClassName = usageCard
@@ -10,7 +14,9 @@ function UsageFormulaCard({ handleHide, usageCard, children, handleEditModal, se
   const formula = useSelector(state => state.usageFormula.formula) || "";
 
   return (
-    <div className={showHideClassName}>
+    
+    // <div  className={showHideClassName} >
+      <Dialog  open={usageCard} onClose={handleHide}>
       <section className="usage-modal">
         <div className="usageFormula-card">
           {children}
@@ -31,7 +37,9 @@ function UsageFormulaCard({ handleHide, usageCard, children, handleEditModal, se
           }
         </div>
       </section>
-    </div>
+      </Dialog>
+    // </div>
+    
   );
 }
 

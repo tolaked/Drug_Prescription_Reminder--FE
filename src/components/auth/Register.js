@@ -227,6 +227,7 @@ const StyledForm = styled.form`
   width: 460px;
   height: 520px;
   background: #ffffff;
+  margin-top:20px;
   border: 1px solid #ddf8fc;
   box-sizing: border-box;
   padding-bottom: 0.3rem;
@@ -241,6 +242,7 @@ const StyledForm = styled.form`
   align-items: center;
   @media only screen and (max-width: 600px) {
       left:68%;
+      margin-top:100px
   }
 `;
 
